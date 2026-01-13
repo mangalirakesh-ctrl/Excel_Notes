@@ -1,0 +1,2819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Excel - Complete Professional Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e7145 0%, #2a9d5f 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "📊";
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -30px;
+            right: -30px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 6px solid #1e7145;
+        }
+
+        .intro-section h2 {
+            color: #1e7145;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .intro-section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .why-excel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .why-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #1e7145;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .why-item h3 {
+            color: #1e7145;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .toc h2 {
+            color: #1e7145;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .toc-item {
+            padding: 12px 18px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #1e7145;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .toc-item:hover {
+            transform: translateX(8px);
+            background: #1e7145;
+            color: white;
+            box-shadow: 0 5px 15px rgba(30,113,69,0.3);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #1e7145 0%, #2a9d5f 100%);
+            color: white;
+            padding: 25px 30px;
+            font-size: 1.8em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-number {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9em;
+        }
+
+        .section-content {
+            padding: 30px;
+            background: white;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #1e7145;
+        }
+
+        .subsection h3 {
+            color: #1e7145;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection h3::before {
+            content: "▶";
+            font-size: 0.7em;
+            color: #2a9d5f;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid #1e7145;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(30,113,69,0.2);
+        }
+
+        .feature-card h4 {
+            color: #1e7145;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .formula-box {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .formula-box::before {
+            content: "Excel";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #1e7145;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #1e7145;
+        }
+
+        .info-box strong {
+            color: #1e7145;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: #1e7145;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .comparison-table tr:hover {
+            background: #e7f3e7;
+        }
+
+        .interface-diagram {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #1e7145;
+        }
+
+        .interface-item {
+            padding: 12px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #2a9d5f;
+        }
+
+        .interface-item strong {
+            color: #1e7145;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .function-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .function-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #1e7145;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .function-list li:hover {
+            background: #f0f8f0;
+            transform: translateX(5px);
+            transition: all 0.3s;
+        }
+
+        .function-name {
+            color: #1e7145;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box::before {
+            content: "💡 Pro Tip: ";
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box::before {
+            content: "⚠️ Important: ";
+            font-weight: bold;
+            color: #856404;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .feature-grid, .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                font-size: 1.4em;
+            }
+        }
+
+        .steps-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 50px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+            border-left: 4px solid #1e7145;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1e7145;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Microsoft Excel</h1>
+            <p>The Complete Professional Guide to Data Processing & Analysis</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-section">
+                <h2>What is Microsoft Excel?</h2>
+                <p><strong>Microsoft Excel</strong> is a powerful spreadsheet application developed by Microsoft that allows users to organize, analyze, and visualize data. It's part of the Microsoft Office suite and is one of the most widely used tools for data processing in business, education, finance, and personal productivity.</p>
+                
+                <p>Excel uses a grid of cells arranged in rows (numbered 1, 2, 3...) and columns (labeled A, B, C...) where you can enter data, perform calculations, create charts, and build complex analytical models.</p>
+
+                <h3 style="color: #1e7145; margin-top: 25px; margin-bottom: 15px;">Why Excel is Used for Data Processing</h3>
+                
+                <div class="why-excel">
+                    <div class="why-item">
+                        <h3>📈 Data Organization</h3>
+                        <p>Store and structure large amounts of data in an organized, tabular format that's easy to read and manipulate.</p>
+                    </div>
+                    
+                    <div class="why-item">
+                        <h3>🔢 Calculations</h3>
+                        <p>Perform simple to complex calculations automatically using formulas and functions, from basic arithmetic to advanced statistical analysis.</p>
+                    </div>
+                    
+                    <div class="why-item">
+                        <h3>📊 Data Visualization</h3>
+                        <p>Create professional charts, graphs, and dashboards to visualize trends and patterns in your data.</p>
+                    </div>
+                    
+                    <div class="why-item">
+                        <h3>🔍 Analysis Tools</h3>
+                        <p>Use built-in tools like Pivot Tables, Power Query, and advanced functions to analyze and summarize data quickly.</p>
+                    </div>
+                    
+                    <div class="why-item">
+                        <h3>🤝 Collaboration</h3>
+                        <p>Share workbooks, track changes, and collaborate with team members in real-time using cloud features.</p>
+                    </div>
+                    
+                    <div class="why-item">
+                        <h3>⚡ Automation</h3>
+                        <p>Automate repetitive tasks using macros, formulas, and VBA programming to save time and reduce errors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toc">
+                <h2>📑 Table of Contents</h2>
+                <div class="toc-grid">
+                    <div class="toc-item">1. Sheets and Workbooks</div>
+                    <div class="toc-item">2. CSV vs Excel Files</div>
+                    <div class="toc-item">3. Excel Interface</div>
+                    <div class="toc-item">4. Cell Formatting</div>
+                    <div class="toc-item">5. Data Formatting</div>
+                    <div class="toc-item">6. Array Functions</div>
+                    <div class="toc-item">7. Text Functions</div>
+                    <div class="toc-item">8. Logical Functions</div>
+                    <div class="toc-item">9. Advanced Functions</div>
+                    <div class="toc-item">10. Lookup Functions</div>
+                    <div class="toc-item">11. Conditional Formatting</div>
+                    <div class="toc-item">12. Sort and Filter</div>
+                    <div class="toc-item">13. Pivot Tables & Charts</div>
+                    <div class="toc-item">14. Data Consolidation</div>
+                    <div class="toc-item">15. Data Validation</div>
+                    <div class="toc-item">16. Power Query Editor</div>
+                    <div class="toc-item">17. Dashboards</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <span>Sheets and Workbooks</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is a Workbook?</h3>
+                        <p>A <strong>workbook</strong> is an Excel file that contains one or more worksheets. It's saved with the extension <span class="highlight">.xlsx</span> (or .xls for older versions). Think of a workbook as a binder that holds multiple pages.</p>
+                        
+                        <div class="info-box">
+                            <strong>Example:</strong> A single file named "Sales_Report_2024.xlsx" is a workbook. It can contain multiple sheets like "January Sales", "February Sales", "Summary", etc.
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>What is a Worksheet (Sheet)?</h3>
+                        <p>A <strong>worksheet</strong> (or sheet) is a single page within a workbook. Each sheet contains a grid of cells organized in rows and columns where you enter and manipulate data.</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>🔢 Default Structure</h4>
+                                <p>1,048,576 rows and 16,384 columns (A to XFD)</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h4>📑 Multiple Sheets</h4>
+                                <p>A workbook can contain unlimited sheets (limited by memory)</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h4>🏷️ Sheet Tabs</h4>
+                                <p>Located at the bottom, can be renamed, colored, and reordered</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h4>🔗 Sheet Navigation</h4>
+                                <p>Use Ctrl+Page Up/Down to move between sheets quickly</p>
+                            </div>
+                        </div>
+
+                        <div class="tip-box">
+                            Right-click on sheet tabs to insert, delete, rename, move, copy, or hide sheets. You can also change the tab color for better organization.
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Common Sheet Operations</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Insert New Sheet</div>
+                                Click the "+" icon next to sheet tabs or press Shift+F11
+                            </li>
+                            <li>
+                                <div class="function-name">Rename Sheet</div>
+                                Double-click the sheet tab or right-click → Rename
+                            </li>
+                            <li>
+                                <div class="function-name">Move/Copy Sheet</div>
+                                Drag the tab to reorder, or right-click → Move or Copy
+                            </li>
+                            <li>
+                                <div class="function-name">Delete Sheet</div>
+                                Right-click the sheet tab → Delete (cannot be undone!)
+                            </li>
+                            <li>
+                                <div class="function-name">Hide/Unhide Sheet</div>
+                                Right-click → Hide (or Unhide to show hidden sheets)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <span>CSV vs Excel Files</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Understanding File Formats</h3>
+                        <p>Both CSV and Excel files store data, but they have significant differences in structure, features, and use cases.</p>
+                    </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>CSV (.csv)</th>
+                                <th>Excel (.xlsx)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Full Name</strong></td>
+                                <td>Comma-Separated Values</td>
+                                <td>Excel Workbook</td>
+                            </tr>
+                            <tr>
+                                <td><strong>File Type</strong></td>
+                                <td>Plain text file</td>
+                                <td>Binary/XML file</td>
+                            </tr>
+                            <tr>
+                                <td><strong>File Size</strong></td>
+                                <td>Smaller (text only)</td>
+                                <td>Larger (includes formatting, formulas)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Multiple Sheets</strong></td>
+                                <td>❌ No (one sheet only)</td>
+                                <td>✅ Yes (unlimited sheets)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Formulas</strong></td>
+                                <td>❌ Not supported</td>
+                                <td>✅ Fully supported</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Formatting</strong></td>
+                                <td>❌ No colors, fonts, borders</td>
+                                <td>✅ Complete formatting options</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Charts & Images</strong></td>
+                                <td>❌ Not supported</td>
+                                <td>✅ Supported</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Types</strong></td>
+                                <td>All data stored as text</td>
+                                <td>Numbers, dates, text, currency, etc.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Compatibility</strong></td>
+                                <td>✅ Universal (any program)</td>
+                                <td>Requires Excel or compatible software</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Best For</strong></td>
+                                <td>Data transfer, imports/exports, databases</td>
+                                <td>Analysis, reports, presentations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="subsection">
+                        <h3>When to Use Each Format</h3>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📄 Use CSV When:</h4>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li>Importing/exporting data to databases</li>
+                                    <li>Transferring data between systems</li>
+                                    <li>You need a lightweight file</li>
+                                    <li>Compatibility is critical</li>
+                                    <li>Working with programming languages</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <h4>📊 Use Excel When:</h4>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li>Performing calculations with formulas</li>
+                                    <li>Creating charts and visualizations</li>
+                                    <li>Need multiple related sheets</li>
+                                    <li>Formatting is important</li>
+                                    <li>Building reports or dashboards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        When saving an Excel file as CSV, you'll lose all formatting, formulas (converted to values), multiple sheets (only active sheet saved), and charts. Excel will warn you about this.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <span>The Excel Interface</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Complete Excel Interface Overview</h3>
+                        <p>Understanding the Excel interface is crucial for working efficiently. Here's a detailed breakdown of all major components:</p>
+                    </div>
+
+                    <div class="interface-diagram">
+                        <div class="interface-item">
+                            <strong>1. Quick Access Toolbar</strong>
+                            Located at the top-left corner, contains frequently used commands like Save, Undo, and Redo. You can customize it by adding your favorite commands.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>2. Title Bar</strong>
+                            Displays the workbook name and Excel icon. Shows "[Saved]" or "[Unsaved]" status.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>3. Ribbon</strong>
+                            The main command area organized into tabs. Each tab contains related groups of commands. Major tabs include:
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li><strong>File:</strong> Backstage view for New, Open, Save, Print, Options</li>
+                                <li><strong>Home:</strong> Most common formatting and editing tools</li>
+                                <li><strong>Insert:</strong> Tables, charts, pictures, shapes, pivot tables</li>
+                                <li><strong>Page Layout:</strong> Themes, page setup, print area</li>
+                                <li><strong>Formulas:</strong> Function library, name manager, formula auditing</li>
+                                <li><strong>Data:</strong> Sort, filter, data validation, text-to-columns, Power Query</li>
+                                <li><strong>Review:</strong> Spell check, comments, protect sheet</li>
+                                <li><strong>View:</strong> Zoom, gridlines, freeze panes, window arrangement</li>
+                            </ul>
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>4. Name Box</strong>
+                            Shows the active cell reference (e.g., "A1" or named range). You can type a cell reference here to jump directly to it.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>5. Formula Bar</strong>
+                            Displays the contents of the active cell. You can edit formulas and data here. Expand it using the down arrow for multi-line editing.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>6. Column Headers</strong>
+                            Letters (A, B, C...) that label each column. Click to select entire column. Double-click the border between columns to auto-fit width.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>7. Row Headers</strong>
+                            Numbers (1, 2, 3...) that label each row. Click to select entire row. Double-click the border between rows to auto-fit height.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>8. Select All Button</strong>
+                            Triangle button at intersection of row and column headers. Selects all cells in the worksheet (Ctrl+A).
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>9. Worksheet Grid</strong>
+                            The main working area with cells organized in rows and columns where you enter data.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>10. Sheet Tabs</strong>
+                            Located at the bottom, shows all sheets in the workbook. Click to switch between sheets. Right-click for sheet options.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>11. Sheet Navigation Buttons</strong>
+                            Arrows to scroll through sheet tabs when you have many sheets.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>12. Status Bar</strong>
+                            Bottom of the window showing:
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Quick calculations (Sum, Average, Count) for selected cells</li>
+                                <li>Page number and view mode</li>
+                                <li>Zoom slider and zoom percentage</li>
+                            </ul>
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>13. View Buttons</strong>
+                            Switch between Normal, Page Layout, and Page Break Preview views.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>14. Zoom Slider</strong>
+                            Adjust zoom level from 10% to 400%. Use Ctrl+Mouse Wheel for quick zoom.
+                        </div>
+
+                        <div class="interface-item">
+                            <strong>15. Scroll Bars</strong>
+                            Vertical and horizontal bars to navigate large worksheets. The scroll box size indicates your position in the data.
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        Press Ctrl+F1 to collapse/expand the Ribbon for more workspace. Double-click any tab name to toggle the Ribbon display.
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Essential Keyboard Shortcuts</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>Navigation</h4>
+                                <p><strong>Ctrl+Home:</strong> Go to A1<br>
+                                <strong>Ctrl+End:</strong> Last used cell<br>
+                                <strong>Ctrl+Arrow:</strong> Jump to edge</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Selection</h4>
+                                <p><strong>Ctrl+A:</strong> Select all<br>
+                                <strong>Shift+Space:</strong> Select row<br>
+                                <strong>Ctrl+Space:</strong> Select column</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Editing</h4>
+                                <p><strong>F2:</strong> Edit cell<br>
+                                <strong>Ctrl+D:</strong> Fill down<br>
+                                <strong>Ctrl+R:</strong> Fill right</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <span>Cell Formatting</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is Cell Formatting?</h3>
+                        <p>Cell formatting changes how data appears without changing the actual value. It includes fonts, colors, borders, alignment, and number formats.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Font Formatting</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📝 Font Type & Size</h4>
+                                <p>Change font family (Arial, Calibri, etc.) and size (8pt to 72pt). Use larger fonts for headers.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🎨 Font Color</h4>
+                                <p>Change text color for emphasis. Use contrasting colors for readability.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>💪 Font Styles</h4>
+                                <p><strong>Bold (Ctrl+B)</strong>, <em>Italic (Ctrl+I)</em>, <u>Underline (Ctrl+U)</u>, Strikethrough</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Cell Alignment</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Horizontal Alignment</div>
+                                Left, Center, Right, Justify - controls text position horizontally
+                            </li>
+                            <li>
+                                <div class="function-name">Vertical Alignment</div>
+                                Top, Middle, Bottom - controls text position vertically in the cell
+                            </li>
+                            <li>
+                                <div class="function-name">Text Wrapping</div>
+                                Wrap Text: Display multiple lines within a cell instead of overflow
+                            </li>
+                            <li>
+                                <div class="function-name">Merge Cells</div>
+                                Combine multiple cells into one (useful for headers). Warning: keeps only top-left value
+                            </li>
+                            <li>
+                                <div class="function-name">Text Orientation</div>
+                                Rotate text at angles (0° to 90°) for vertical headers
+                            </li>
+                            <li>
+                                <div class="function-name">Indent</div>
+                                Add space before text for hierarchical data display
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Cell Borders and Fill</h3>
+                        <div class="info-box">
+                            <strong>Borders:</strong> Add lines around cells (All Borders, Outline, Top/Bottom, Custom). Use borders to create tables and separate sections visually.
+                        </div>
+                        <div class="info-box">
+                            <strong>Fill Color:</strong> Add background color to cells. Use light colors for readability. Alternating row colors improve data scanning.
+                        </div>
+                        <div class="info-box">
+                            <strong>Patterns:</strong> Add patterns and gradients for special effects (rarely used in professional work).
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Cell Styles</h3>
+                        <p>Pre-designed format combinations for quick, consistent formatting:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Good, Bad, Neutral:</strong> Color-coded data indicators</li>
+                            <li><strong>Titles and Headings:</strong> Professional header styles</li>
+                            <li><strong>Themed Cell Styles:</strong> Match your workbook theme</li>
+                            <li><strong>Number Formats:</strong> Currency, Percentage, Comma style shortcuts</li>
+                        </ul>
+                        <div class="tip-box">
+                            Create custom cell styles (Home → Cell Styles → New Cell Style) to maintain consistent formatting across your workbook.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <span>Data Formatting</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Number Formats</h3>
+                        <p>Control how numbers appear while preserving their actual values for calculations.</p>
+                    </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Format Type</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>General</strong></td>
+                                <td>Default format, no specific formatting</td>
+                                <td>1234.5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Number</strong></td>
+                                <td>Decimal places, thousand separators</td>
+                                <td>1,234.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Currency</strong></td>
+                                <td>Money values with currency symbol</td>
+                                <td>$1,234.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accounting</strong></td>
+                                <td>Aligns currency symbols and decimals</td>
+                                <td>$ 1,234.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Percentage</strong></td>
+                                <td>Multiplies by 100 and adds %</td>
+                                <td>25.00%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fraction</strong></td>
+                                <td>Displays as fractions</td>
+                                <td>1/4 (from 0.25)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scientific</strong></td>
+                                <td>Exponential notation for very large/small numbers</td>
+                                <td>1.23E+03</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Text</strong></td>
+                                <td>Treats numbers as text</td>
+                                <td>'1234 (with apostrophe)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="subsection">
+                        <h3>Date and Time Formats</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📅 Date Formats</h4>
+                                <p>3/14/2024<br>
+                                14-Mar-24<br>
+                                March 14, 2024<br>
+                                Friday, March 14, 2024</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>⏰ Time Formats</h4>
+                                <p>1:30 PM<br>
+                                13:30<br>
+                                1:30:55 PM<br>
+                                13:30:55</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📆 Combined</h4>
+                                <p>3/14/2024 1:30 PM<br>
+                                14-Mar-24 13:30<br>
+                                Custom: dd/mm/yyyy hh:mm</p>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <strong>Important:</strong> Excel stores dates as numbers (days since January 1, 1900). That's why you can do math with dates!
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Custom Number Formats</h3>
+                        <p>Create your own formats using format codes:</p>
+                        <div class="formula-box">
+#,##0.00 "units"      → 1,234.50 units
+[Blue]#,##0;[Red]-#,##0  → Blue positive, Red negative
+000000              → 000123 (6-digit codes)
+"Code: "0000        → Code: 0123</div>
+                        
+                        <div class="info-box">
+                            <strong>Format Code Structure:</strong><br>
+                            Positive;Negative;Zero;Text<br>
+                            - Use # for optional digits<br>
+                            - Use 0 for forced digits (shows zeros)<br>
+                            - Use text in "quotes"<br>
+                            - Use [Color] for conditional coloring
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <span>Array Functions</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What are Array Functions?</h3>
+                        <p>Array functions perform calculations on multiple values simultaneously and can return multiple results. Modern Excel (Microsoft 365) has dynamic arrays that automatically spill results into adjacent cells.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Dynamic Array Functions</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">FILTER()</div>
+                                Filters data based on conditions, returns matching rows
+                                <div class="formula-box">=FILTER(A2:D100, C2:C100>1000)
+Returns all rows where column C > 1000</div>
+                            </li>
+                            <li>
+                                <div class="function-name">SORT()</div>
+                                Sorts data by one or more columns
+                                <div class="formula-box">=SORT(A2:C100, 2, -1)
+Sorts by column 2 in descending order</div>
+                            </li>
+                            <li>
+                                <div class="function-name">SORTBY()</div>
+                                Sorts data based on corresponding values in another range
+                                <div class="formula-box">=SORTBY(A2:B100, C2:C100, -1)
+Sorts A:B based on values in C (descending)</div>
+                            </li>
+                            <li>
+                                <div class="function-name">UNIQUE()</div>
+                                Returns unique values from a range, removes duplicates
+                                <div class="formula-box">=UNIQUE(A2:A100)
+Lists each unique value once</div>
+                            </li>
+                            <li>
+                                <div class="function-name">SEQUENCE()</div>
+                                Generates a sequence of numbers
+                                <div class="formula-box">=SEQUENCE(10, 1, 1, 1)
+Creates 1 to 10 in a column</div>
+                            </li>
+                            <li>
+                                <div class="function-name">RANDARRAY()</div>
+                                Generates array of random numbers
+                                <div class="formula-box">=RANDARRAY(5, 3, 1, 100, TRUE)
+5 rows, 3 columns, integers between 1-100</div>
+                            </li>
+                            <li>
+                                <div class="function-name">XLOOKUP()</div>
+                                Modern lookup function with array capabilities
+                                <div class="formula-box">=XLOOKUP(E2, A:A, B:C)
+Looks up E2 in column A, returns multiple columns B:C</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Traditional Array Functions</h3>
+                        <p>These require Ctrl+Shift+Enter in older Excel versions:</p>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">SUMPRODUCT()</div>
+                                Multiplies corresponding arrays and sums the results
+                                <div class="formula-box">=SUMPRODUCT(A2:A10, B2:B10)
+Multiplies each A*B pair and sums all results</div>
+                            </li>
+                            <li>
+                                <div class="function-name">TRANSPOSE()</div>
+                                Converts rows to columns and vice versa
+                                <div class="formula-box">=TRANSPOSE(A1:E1)
+Converts 5 columns to 5 rows</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        Dynamic arrays automatically "spill" into neighboring cells. Don't put data in the spill range or you'll get a #SPILL! error.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <span>Text Functions</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Essential Text Functions</h3>
+                        <p>Manipulate and analyze text data with these powerful functions:</p>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">LEFT(), RIGHT(), MID()</div>
+                            Extract portions of text
+                            <div class="formula-box">=LEFT(A1, 5)         → First 5 characters
+=RIGHT(A1, 3)        → Last 3 characters  
+=MID(A1, 3, 4)       → 4 characters starting at position 3</div>
+                        </li>
+                        <li>
+                            <div class="function-name">LEN()</div>
+                            Returns the length of text (number of characters)
+                            <div class="formula-box">=LEN("Hello")  → 5</div>
+                        </li>
+                        <li>
+                            <div class="function-name">CONCATENATE() / CONCAT() / TEXTJOIN()</div>
+                            Combine text from multiple cells
+                            <div class="formula-box">=CONCATENATE(A1, " ", B1)  → Joins with space
+=CONCAT(A1:A10)                → Joins range  
+=TEXTJOIN(", ", TRUE, A1:A10)  → Joins with delimiter, ignores blanks</div>
+                        </li>
+                        <li>
+                            <div class="function-name">UPPER(), LOWER(), PROPER()</div>
+                            Change text case
+                            <div class="formula-box">=UPPER("hello")  → HELLO
+=LOWER("HELLO")  → hello
+=PROPER("john smith")  → John Smith</div>
+                        </li>
+                        <li>
+                            <div class="function-name">TRIM()</div>
+                            Removes extra spaces (keeps only single spaces between words)
+                            <div class="formula-box">=TRIM("  Hello   World  ")  → "Hello World"</div>
+                        </li>
+                        <li>
+                            <div class="function-name">SUBSTITUTE(), REPLACE()</div>
+                            Replace text
+                            <div class="formula-box">=SUBSTITUTE(A1, "old", "new")  → Replaces all instances
+=REPLACE(A1, 3, 2, "XX")       → Replaces 2 chars at position 3</div>
+                        </li>
+                        <li>
+                            <div class="function-name">FIND(), SEARCH()</div>
+                            Locate text within text
+                            <div class="formula-box">=FIND("@", A1)      → Position of @ (case-sensitive)
+=SEARCH("abc", A1)   → Position of abc (not case-sensitive)</div>
+                        </li>
+                        <li>
+                            <div class="function-name">TEXT()</div>
+                            Convert numbers to formatted text
+                            <div class="formula-box">=TEXT(1234.5, "$#,##0.00")  → $1,234.50
+=TEXT(TODAY(), "DD-MMM-YYYY")  → 13-JAN-2026</div>
+                        </li>
+                        <li>
+                            <div class="function-name">VALUE()</div>
+                            Converts text that looks like a number to an actual number
+                            <div class="formula-box">=VALUE("1234")  → 1234 (as number)</div>
+                        </li>
+                        <li>
+                            <div class="function-name">TEXTSPLIT()</div>
+                            Splits text into columns/rows by delimiter (Microsoft 365)
+                            <div class="formula-box">=TEXTSPLIT("apple,banana,orange", ",")
+→ Splits into 3 cells</div>
+                        </li>
+                    </ul>
+
+                    <div class="tip-box">
+                        Use & operator as a shortcut for concatenation: =A1&" "&B1 is the same as =CONCATENATE(A1," ",B1)
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">08</span>
+                    <span>Logical Functions</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Core Logical Functions</h3>
+                        <p>Make decisions in your formulas based on conditions:</p>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">IF()</div>
+                            The foundation of logical testing - returns one value if TRUE, another if FALSE
+                            <div class="formula-box">=IF(A1>100, "High", "Low")
+If A1 > 100, shows "High", otherwise "Low"</div>
+                        </li>
+                        <li>
+                            <div class="function-name">Nested IF()</div>
+                            Multiple conditions tested in sequence
+                            <div class="formula-box">=IF(A1>=90, "A", IF(A1>=80, "B", IF(A1>=70, "C", "F")))
+Grade based on score</div>
+                        </li>
+                        <li>
+                            <div class="function-name">IFS()</div>
+                            Cleaner alternative to nested IFs (Microsoft 365)
+                            <div class="formula-box">=IFS(A1>=90, "A", A1>=80, "B", A1>=70, "C", TRUE, "F")
+Same as nested IF but more readable</div>
+                        </li>
+                        <li>
+                            <div class="function-name">AND()</div>
+                            Returns TRUE only if ALL conditions are true
+                            <div class="formula-box">=AND(A1>100, B1<50)
+TRUE only if both conditions met</div>
+                        </li>
+                        <li>
+                            <div class="function-name">OR()</div>
+                            Returns TRUE if ANY condition is true
+                            <div class="formula-box">=OR(A1="Red", A1="Blue", A1="Green")
+TRUE if A1 is any of these colors</div>
+                        </li>
+                        <li>
+                            <div class="function-name">NOT()</div>
+                            Reverses the logic - TRUE becomes FALSE and vice versa
+                            <div class="formula-box">=NOT(A1="Cancelled")
+TRUE if NOT cancelled</div>
+                        </li>
+                        <li>
+                            <div class="function-name">XOR()</div>
+                            TRUE if odd number of conditions are TRUE
+                            <div class="formula-box">=XOR(A1>50, B1>50)
+TRUE if only one condition is met, not both</div>
+                        </li>
+                        <li>
+                            <div class="function-name">IFERROR()</div>
+                            Handle errors gracefully
+                            <div class="formula-box">=IFERROR(A1/B1, "Error")
+Shows "Error" if division fails</div>
+                        </li>
+                        <li>
+                            <div class="function-name">IFNA()</div>
+                            Specifically handles #N/A errors (common with lookups)
+                            <div class="formula-box">=IFNA(VLOOKUP(A1, B:C, 2, 0), "Not Found")
+Shows "Not Found" instead of #N/A</div>
+                        </li>
+                        <li>
+                            <div class="function-name">SWITCH()</div>
+                            Match a value against multiple cases
+                            <div class="formula-box">=SWITCH(A1, "S", "Small", "M", "Medium", "L", "Large", "Unknown")
+Converts codes to descriptions</div>
+                        </li>
+                    </ul>
+
+                    <div class="subsection">
+                        <h3>Combining Logical Functions</h3>
+                        <div class="formula-box">=IF(AND(A1>100, B1="Active"), "Qualified", "Not Qualified")
+
+=IF(OR(A1="Premium", B1>5000), "VIP", "Regular")
+
+=IFERROR(IF(A1/B1>0.5, "High", "Low"), "No Data")</div>
+                    </div>
+
+                    <div class="tip-box">
+                        Use IFS() instead of nested IF() when you have 3+ conditions. It's much easier to read and maintain!
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">09</span>
+                    <span>Advanced Functions</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Mathematical & Statistical Functions</h3>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">SUM(), SUMIF(), SUMIFS()</div>
+                            Add numbers with or without conditions
+                            <div class="formula-box">=SUM(A1:A100)
+=SUMIF(A1:A100, ">100")        → Sum where > 100
+=SUMIFS(C:C, A:A, "East", B:B, ">1000")  → Multiple conditions</div>
+                        </li>
+                        <li>
+                            <div class="function-name">AVERAGE(), AVERAGEIF(), AVERAGEIFS()</div>
+                            Calculate mean values
+                            <div class="formula-box">=AVERAGE(A1:A100)
+=AVERAGEIF(B:B, "Complete", A:A)  → Average A where B="Complete"</div>
+                        </li>
+                        <li>
+                            <div class="function-name">COUNT(), COUNTA(), COUNTBLANK()</div>
+                            Count cells
+                            <div class="formula-box">=COUNT(A:A)       → Counts numbers only
+=COUNTA(A:A)      → Counts non-empty cells
+=COUNTBLANK(A:A)  → Counts empty cells</div>
+                        </li>
+                        <li>
+                            <div class="function-name">COUNTIF(), COUNTIFS()</div>
+                            Count with conditions
+                            <div class="formula-box">=COUNTIF(A:A, ">100")
+=COUNTIFS(A:A, "East", B:B, ">1000")  → Count with multiple criteria</div>
+                        </li>
+                        <li>
+                            <div class="function-name">MAX(), MIN(), LARGE(), SMALL()</div>
+                            Find extreme values
+                            <div class="formula-box">=MAX(A:A)         → Largest value
+=MIN(A:A)         → Smallest value
+=LARGE(A:A, 2)   → 2nd largest
+=SMALL(A:A, 3)   → 3rd smallest</div>
+                        </li>
+                        <li>
+                            <div class="function-name">ROUND(), ROUNDUP(), ROUNDDOWN()</div>
+                            Round numbers
+                            <div class="formula-box">=ROUND(A1, 2)      → Round to 2 decimals
+=ROUNDUP(A1, 0)    → Round up to integer
+=ROUNDDOWN(A1, -2) → Round down to nearest 100</div>
+                        </li>
+                        <li>
+                            <div class="function-name">ABS(), SIGN()</div>
+                            Absolute value and sign
+                            <div class="formula-box">=ABS(-10)   → 10
+=SIGN(-10)  → -1 (negative), 0 (zero), 1 (positive)</div>
+                        </li>
+                    </ul>
+
+                    <div class="subsection">
+                        <h3>Date & Time Functions</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">TODAY(), NOW()</div>
+                                Current date and time
+                                <div class="formula-box">=TODAY()  → Current date (updates daily)
+=NOW()    → Current date and time (updates continuously)</div>
+                            </li>
+                            <li>
+                                <div class="function-name">DATE(), TIME()</div>
+                                Create date/time values
+                                <div class="formula-box">=DATE(2024, 3, 15)   → March 15, 2024
+=TIME(14, 30, 0)      → 2:30 PM</div>
+                            </li>
+                            <li>
+                                <div class="function-name">YEAR(), MONTH(), DAY()</div>
+                                Extract date components
+                                <div class="formula-box">=YEAR(A1)   → Extract year
+=MONTH(A1)  → Extract month (1-12)
+=DAY(A1)    → Extract day (1-31)</div>
+                            </li>
+                            <li>
+                                <div class="function-name">WEEKDAY(), WEEKNUM()</div>
+                                Week information
+                                <div class="formula-box">=WEEKDAY(A1)  → Day of week (1=Sunday, 7=Saturday)
+=WEEKNUM(A1)  → Week number of the year</div>
+                            </li>
+                            <li>
+                                <div class="function-name">EDATE(), EOMONTH()</div>
+                                Calculate future/past dates
+                                <div class="formula-box">=EDATE(A1, 3)     → Date 3 months from A1
+=EOMONTH(A1, 0)  → Last day of current month</div>
+                            </li>
+                            <li>
+                                <div class="function-name">DATEDIF()</div>
+                                Calculate difference between dates (undocumented but useful!)
+                                <div class="formula-box">=DATEDIF(A1, B1, "D")  → Days between dates
+=DATEDIF(A1, B1, "M")  → Months
+=DATEDIF(A1, B1, "Y")  → Years</div>
+                            </li>
+                            <li>
+                                <div class="function-name">NETWORKDAYS(), WORKDAY()</div>
+                                Business day calculations
+                                <div class="formula-box">=NETWORKDAYS(A1, B1)  → Working days between dates
+=WORKDAY(A1, 20)       → Date 20 working days after A1</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Information Functions</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">ISBLANK(), ISNUMBER(), ISTEXT()</div>
+                                Test cell contents
+                                <div class="formula-box">=ISBLANK(A1)   → TRUE if empty
+=ISNUMBER(A1)  → TRUE if contains number
+=ISTEXT(A1)    → TRUE if contains text</div>
+                            </li>
+                            <li>
+                                <div class="function-name">ISERROR(), ISERR(), ISNA()</div>
+                                Test for errors
+                                <div class="formula-box">=ISERROR(A1)  → TRUE if any error
+=ISNA(A1)     → TRUE if #N/A error only</div>
+                            </li>
+                            <li>
+                                <div class="function-name">CELL(), TYPE()</div>
+                                Get cell information
+                                <div class="formula-box">=CELL("address", A1)  → Returns cell address
+=TYPE(A1)              → 1=number, 2=text, 16=error</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">10</span>
+                    <span>Lookup Functions</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Essential Lookup Functions</h3>
+                        <p>Find and retrieve data from tables and ranges:</p>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">VLOOKUP() - Vertical Lookup</div>
+                            Searches first column of a table and returns value from specified column
+                            <div class="formula-box">=VLOOKUP(A2, ProductTable, 3, FALSE)
+
+Looks for A2 in first column of ProductTable
+Returns value from 3rd column
+FALSE = exact match only</div>
+                            <div class="info-box">
+                                <strong>Syntax:</strong> VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])<br>
+                                <strong>Limitation:</strong> Can only look to the RIGHT (can't return columns to the left)
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">HLOOKUP() - Horizontal Lookup</div>
+                            Like VLOOKUP but searches in rows instead of columns
+                            <div class="formula-box">=HLOOKUP(A1, DataRange, 3, FALSE)
+
+Searches first ROW for A1
+Returns value from 3rd row down</div>
+                        </li>
+                        <li>
+                            <div class="function-name">XLOOKUP() - Modern Lookup</div>
+                            Powerful replacement for VLOOKUP/HLOOKUP (Microsoft 365)
+                            <div class="formula-box">=XLOOKUP(A2, ProductIDs, ProductNames)
+
+Simpler syntax, no column numbers
+Can look LEFT or RIGHT
+Returns #N/A if not found (customizable)</div>
+                            <div class="info-box">
+                                <strong>Advanced XLOOKUP:</strong>
+                                <div class="formula-box">=XLOOKUP(A2, IDs, Names, "Not Found", 0, 1)
+
+0 = exact match
+1 = search first-to-last
+Can return multiple columns: XLOOKUP(A2, IDs, B:D)</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">INDEX() - Return Value by Position</div>
+                            Returns value from specific row and column position
+                            <div class="formula-box">=INDEX(A1:C100, 10, 2)
+
+Returns value from row 10, column 2 of range</div>
+                        </li>
+                        <li>
+                            <div class="function-name">MATCH() - Find Position</div>
+                            Returns position of value in range
+                            <div class="formula-box">=MATCH("Apple", A1:A100, 0)
+
+Returns row number where "Apple" is found
+0 = exact match</div>
+                        </li>
+                        <li>
+                            <div class="function-name">INDEX-MATCH Combination</div>
+                            The most powerful and flexible lookup method
+                            <div class="formula-box">=INDEX(ReturnRange, MATCH(LookupValue, LookupRange, 0))
+
+Example:
+=INDEX(C:C, MATCH(E2, A:A, 0))
+
+Looks for E2 in column A
+Returns corresponding value from column C
+Can look LEFT or RIGHT, more flexible than VLOOKUP</div>
+                            <div class="tip-box">
+                                INDEX-MATCH is preferred over VLOOKUP because:<br>
+                                ✅ Can look left or right<br>
+                                ✅ Faster with large datasets<br>
+                                ✅ Won't break if columns are inserted/deleted<br>
+                                ✅ More flexible for complex lookups
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">INDEX-MATCH for 2D Lookup</div>
+                            Find value based on both row and column criteria
+                            <div class="formula-box">=INDEX(B2:E10, MATCH(H2, A2:A10, 0), MATCH(H3, B1:E1, 0))
+
+Looks up by both row header (H2) and column header (H3)</div>
+                        </li>
+                        <li>
+                            <div class="function-name">XMATCH() - Modern MATCH</div>
+                            Enhanced version of MATCH (Microsoft 365)
+                            <div class="formula-box">=XMATCH(A1, B:B, 0)
+
+More options for match types and search modes</div>
+                        </li>
+                        <li>
+                            <div class="function-name">CHOOSE()</div>
+                            Returns value from list based on index number
+                            <div class="formula-box">=CHOOSE(2, "Red", "Blue", "Green")  → Returns "Blue"
+
+Useful for selecting from fixed list of options</div>
+                        </li>
+                    </ul>
+
+                    <div class="subsection">
+                        <h3>Lookup Function Comparison</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Function</th>
+                                    <th>Direction</th>
+                                    <th>Flexibility</th>
+                                    <th>Best Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>VLOOKUP</strong></td>
+                                    <td>Right only</td>
+                                    <td>Limited</td>
+                                    <td>Simple lookups, legacy files</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>HLOOKUP</strong></td>
+                                    <td>Down only</td>
+                                    <td>Limited</td>
+                                    <td>Horizontal tables</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>INDEX-MATCH</strong></td>
+                                    <td>Any direction</td>
+                                    <td>High</td>
+                                    <td>Complex lookups, large data</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>XLOOKUP</strong></td>
+                                    <td>Any direction</td>
+                                    <td>Very High</td>
+                                    <td>Modern Excel, all scenarios</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">11</span>
+                    <span>Conditional Formatting</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is Conditional Formatting?</h3>
+                        <p>Conditional Formatting automatically changes cell appearance (color, font, borders) based on cell values or formulas. It helps visualize data patterns, highlight important information, and identify trends at a glance.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Types of Conditional Formatting</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Highlight Cell Rules</div>
+                                Highlight cells based on simple conditions
+                                <div class="info-box">
+                                    <strong>Options:</strong><br>
+                                    • Greater Than / Less Than<br>
+                                    • Between (range)<br>
+                                    • Equal To / Text Contains<br>
+                                    • Date Occurring (today, yesterday, this week, etc.)<br>
+                                    • Duplicate Values
+                                </div>
+                                <div class="tip-box">
+                                    Example: Highlight all sales > $10,000 in green
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Top/Bottom Rules</div>
+                                Highlight top or bottom performers
+                                <div class="info-box">
+                                    <strong>Options:</strong><br>
+                                    • Top 10 Items / Bottom 10 Items<br>
+                                    • Top 10% / Bottom 10%<br>
+                                    • Above Average / Below Average
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Data Bars</div>
+                                Shows horizontal bars inside cells proportional to values
+                                <div class="info-box">
+                                    Creates visual bar charts directly in cells. Great for quick comparison of values. Can customize bar color, direction, and whether to show the number.
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Color Scales</div>
+                                Apply gradient colors based on value ranges
+                                <div class="info-box">
+                                    2-Color Scale: Low values one color, high values another (e.g., red to green)<br>
+                                    3-Color Scale: Low, medium, high get different colors (e.g., red-yellow-green)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Icon Sets</div>
+                                Display icons based on value thresholds
+                                <div class="info-box">
+                                    <strong>Available Icons:</strong><br>
+                                    • Arrows (3, 4, or 5 directions)<br>
+                                    • Traffic Lights<br>
+                                    • Ratings (stars, flags)<br>
+                                    • Indicators (symbols, shapes)<br>
+                                    Perfect for status dashboards and KPIs
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Custom Formula Rules</div>
+                                Create complex rules using formulas
+                                <div class="formula-box">Example: Highlight entire row if status is "Completed"
+Formula: =$E1="Completed"
+(Apply to range A1:F100)
+
+Example: Highlight weekends
+Formula: =WEEKDAY(A1,2)>5
+
+Example: Highlight duplicates in column
+Formula: =COUNTIF($A:$A,$A1)>1</div>
+                                <div class="warning-box">
+                                    Use absolute references ($) carefully! $A1 locks column, A$1 locks row, $A$1 locks both.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Managing Conditional Formatting</h3>
+                        <ol class="steps-list">
+                            <li>Select cells → Home tab → Conditional Formatting</li>
+                            <li>Choose rule type or "New Rule" for custom</li>
+                            <li>Set conditions and formatting style</li>
+                            <li>Use "Manage Rules" to edit, delete, or reorder rules</li>
+                            <li>Clear Rules to remove formatting</li>
+                        </ol>
+                        
+                        <div class="tip-box">
+                            Rule Priority: When multiple rules apply, the first rule (top of list) takes precedence. Use "Manage Rules" to reorder them. Check "Stop If True" to prevent lower rules from applying.
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Practical Examples</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📊 Sales Dashboard</h4>
+                                <p>Green for targets met (>100%), Red for below target (<100%), Data bars for visual comparison</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📅 Project Timeline</h4>
+                                <p>Yellow for due soon (within 7 days), Red for overdue, Traffic lights for status</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>💰 Budget Tracking</h4>
+                                <p>Color scale from green (under budget) to red (over budget), Icons for variance levels</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📈 Performance Review</h4>
+                                <p>Highlight top 10% performers in green, Bottom 10% in red, Stars for ratings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">12</span>
+                    <span>Sort and Filter</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>Sorting Data</h3>
+                        <p>Arranging data in a specific order (ascending, descending, or custom).</p>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">Simple Sort</div>
+                            Quick one-column sorting
+                            <ol class="steps-list">
+                                <li>Click any cell in the column to sort</li>
+                                <li>Data tab → Sort A to Z (ascending) or Sort Z to A (descending)</li>
+                                <li>Or: Right-click → Sort → Sort A to Z</li>
+                            </ol>
+                            <div class="info-box">
+                                <strong>Automatic Detection:</strong> Excel automatically expands selection to include all adjacent data (the entire table), not just the single column.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">Multi-Level Sort</div>
+                            Sort by multiple columns with priority
+                            <ol class="steps-list">
+                                <li>Select any cell in your data range</li>
+                                <li>Data tab → Sort (the big button)</li>
+                                <li>Add levels for each sorting criterion</li>
+                                <li>Set sort order for each level</li>
+                            </ol>
+                            <div class="formula-box">Example: Sort by Region (A-Z), then by Sales (Largest to Smallest)
+Level 1: Region, A to Z
+Level 2: Sales, Largest to Smallest</div>
+                        </li>
+                        <li>
+                            <div class="function-name">Custom Sort</div>
+                            Sort using your own order
+                            <div class="info-box">
+                                In Sort dialog → Order dropdown → Custom List<br>
+                                Create custom lists like: High, Medium, Low or Q1, Q2, Q3, Q4<br>
+                                File → Options → Advanced → Edit Custom Lists
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">Sort by Color</div>
+                            Sort based on cell or font colors
+                            <div class="info-box">
+                                In Sort dialog → Sort On → Cell Color or Font Color<br>
+                                Useful when you've colored cells manually or via conditional formatting
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="subsection">
+                        <h3>Filtering Data</h3>
+                        <p>Display only rows that meet specific criteria, hiding the rest temporarily.</p>
+                    </div>
+
+                    <ul class="function-list">
+                        <li>
+                            <div class="function-name">AutoFilter</div>
+                            Basic filtering with dropdown menus
+                            <ol class="steps-list">
+                                <li>Click any cell in your data</li>
+                                <li>Data tab → Filter (or Ctrl+Shift+L)</li>
+                                <li>Click dropdown arrows in headers</li>
+                                <li>Check/uncheck items to show/hide</li>
+                            </ol>
+                            <div class="info-box">
+                                <strong>Filter Options:</strong><br>
+                                • Check/uncheck specific values<br>
+                                • Text Filters: Contains, Begins With, Ends With<br>
+                                • Number Filters: Greater Than, Less Than, Between<br>
+                                • Date Filters: Today, This Week, Last Month, Custom
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">Multiple Filters</div>
+                            Apply filters to multiple columns simultaneously
+                            <div class="info-box">
+                                Each column can have its own filter. Excel shows only rows that match ALL active filters (AND logic).
+                            </div>
+                            <div class="tip-box">
+                                Filtered row numbers appear in blue. Status bar shows "X of Y records found"
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">Advanced Filter</div>
+                            Complex filtering with multiple criteria
+                            <ol class="steps-list">
+                                <li>Create criteria range above/beside your data</li>
+                                <li>Data tab → Advanced (in Sort & Filter group)</li>
+                                <li>Specify List range and Criteria range</li>
+                                <li>Choose to filter in-place or copy to another location</li>
+                            </ol>
+                            <div class="formula-box">Criteria Range Example:
+Region    Sales
+East      >5000
+West      >3000
+
+Shows East sales >5000 OR West sales >3000</div>
+                        </li>
+                        <li>
+                            <div class="function-name">Filter by Selection</div>
+                            Quick filter based on cell value
+                            <div class="info-box">
+                                Right-click cell → Filter → Filter by Selected Cell's Value<br>
+                                Instantly shows only matching rows
+                            </div>
+                        </li>
+                        <li>
+                            <div class="function-name">Slicer (for Tables)</div>
+                            Visual, interactive filter buttons
+                            <ol class="steps-list">
+                                <li>Convert range to Table (Ctrl+T)</li>
+                                <li>Table Design tab → Insert Slicer</li>
+                                <li>Choose columns for slicers</li>
+                                <li>Click slicer buttons to filter</li>
+                            </ol>
+                            <div class="tip-box">
+                                Slicers are perfect for dashboards - they're visual, easy to use, and show filter status at a glance. Multi-select with Ctrl or Shift.
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="subsection">
+                        <h3>Clearing Sorts and Filters</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>Clear Filters</h4>
+                                <p>Data → Clear (preserves filter dropdowns)<br>Or click Clear Filter icon in column dropdown</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Remove Filter</h4>
+                                <p>Data → Filter (toggle off)<br>Removes dropdown arrows entirely</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Reapply Filter</h4>
+                                <p>Data → Reapply<br>Useful when data changes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        Filtering hides rows but doesn't delete them. Be careful when copying filtered data - use Paste Special → Values or Go To Special → Visible Cells Only (Alt+;) before copying.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">13</span>
+                    <span>Pivot Tables & Pivot Charts</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is a Pivot Table?</h3>
+                        <p>A Pivot Table is Excel's most powerful data analysis tool. It summarizes large amounts of data by automatically grouping, calculating, and organizing information. You can quickly create reports, find patterns, and analyze data from different perspectives without formulas.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Creating a Pivot Table</h3>
+                        <ol class="steps-list">
+                            <li>Click anywhere in your data range (Excel will auto-detect the range)</li>
+                            <li>Insert tab → PivotTable</li>
+                            <li>Choose where to place it (New Worksheet recommended)</li>
+                            <li>Click OK - you'll see the PivotTable Fields pane</li>
+                        </ol>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Pivot Table Field Areas</h3>
+                        <div class="interface-diagram">
+                            <div class="interface-item">
+                                <strong>Filters Area</strong>
+                                Add fields here to create report filters at the top. Users can filter the entire pivot table by these fields (like a slicer).
+                            </div>
+                            <div class="interface-item">
+                                <strong>Columns Area</strong>
+                                Fields placed here become column headers. Values spread horizontally across the top.
+                            </div>
+                            <div class="interface-item">
+                                <strong>Rows Area</strong>
+                                Fields placed here become row headers. Values spread vertically down the left side.
+                            </div>
+                            <div class="interface-item">
+                                <strong>Values Area</strong>
+                                The calculations. By default, text fields are counted, numbers are summed. You can change to Average, Max, Min, Count, etc.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Common Pivot Table Operations</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Summarize Data</div>
+                                Drag fields to areas to create summary
+                                <div class="formula-box">Example: Sales Analysis
+Rows: Product Category
+Columns: Region  
+Values: Sum of Sales
+
+Result: Shows total sales for each product in each region</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Change Calculation Type</div>
+                                Click value field → Value Field Settings
+                                <div class="info-box">
+                                    <strong>Available Calculations:</strong><br>
+                                    Sum, Count, Average, Max, Min, Product, Count Numbers, StdDev, Var
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Show Values As</div>
+                                Display calculations in different ways
+                                <div class="info-box">
+                                    • % of Grand Total<br>
+                                    • % of Column Total / % of Row Total<br>
+                                    • % Difference From (compare to another value)<br>
+                                    • Running Total<br>
+                                    • Rank (Smallest to Largest / Largest to Smallest)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Group Data</div>
+                                Combine items into groups
+                                <div class="info-box">
+                                    Right-click on dates → Group → by Months, Quarters, Years<br>
+                                    Right-click on numbers → Group → create ranges (0-100, 101-200, etc.)<br>
+                                    Select items → Right-click → Group Selection (manual grouping)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Calculated Fields</div>
+                                Create custom calculations within pivot table
+                                <div class="formula-box">PivotTable Analyze → Fields, Items & Sets → Calculated Field
+
+Example: Profit Margin
+= Sales / Cost - 1
+
+Creates new field that appears in field list</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Slicers & Timelines</div>
+                                Visual filters for pivot tables
+                                <div class="info-box">
+                                    <strong>Slicer:</strong> PivotTable Analyze → Insert Slicer<br>
+                                    <strong>Timeline:</strong> PivotTable Analyze → Insert Timeline (for dates)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Refresh Data</div>
+                                Update pivot table when source data changes
+                                <div class="info-box">
+                                    Right-click pivot table → Refresh<br>
+                                    Or: PivotTable Analyze → Refresh<br>
+                                    Refresh All: Updates all pivot tables in workbook
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Pivot Charts</h3>
+                        <p>Visual representation of Pivot Table data. Changes dynamically as you modify the pivot table.</p>
+                        
+                        <ol class="steps-list">
+                            <li>Click anywhere in your Pivot Table</li>
+                            <li>Insert → PivotChart</li>
+                            <li>Choose chart type (Column, Line, Pie, etc.)</li>
+                            <li>Chart updates automatically when pivot table changes</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            Pivot Charts include field buttons (filters) directly on the chart. You can hide these buttons via PivotChart Analyze → Field Buttons → Hide All for cleaner presentations.
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Pivot Table Best Practices</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>✅ Clean Source Data</h4>
+                                <p>No blank rows/columns, consistent headers, no merged cells, data in proper format</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>✅ Use Tables</h4>
+                                <p>Convert source data to Table (Ctrl+T) - pivot auto-expands as data grows</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>✅ Name Fields Clearly</h4>
+                                <p>Use descriptive header names - they become pivot field names</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>✅ Keep It Simple</h4>
+                                <p>Start simple, add complexity gradually. Don't overcrowd with too many fields</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">14</span>
+                    <span>Data Consolidation</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is Data Consolidation?</h3>
+                        <p>Data Consolidation combines data from multiple ranges, worksheets, or workbooks into a single summary. It's perfect when you have similar data in different locations (like monthly sales from different regions) and want to combine them.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Methods of Consolidation</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Consolidate by Position</div>
+                                Combines data from same cell positions across sheets
+                                <ol class="steps-list">
+                                    <li>Create a summary sheet</li>
+                                    <li>Data tab → Consolidate</li>
+                                    <li>Choose function (Sum, Average, Count, etc.)</li>
+                                    <li>Add references from different sheets/ranges</li>
+                                    <li>Click OK</li>
+                                </ol>
+                                <div class="info-box">
+                                    <strong>Best for:</strong> Identical table structures across sheets (same layout, same cell positions)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Consolidate by Category</div>
+                                Matches data by row/column labels (headers)
+                                <ol class="steps-list">
+                                    <li>Ensure all source ranges have labels (headers)</li>
+                                    <li>Data tab → Consolidate</li>
+                                    <li>Check "Top row" and/or "Left column"</li>
+                                    <li>Add all source ranges (include headers)</li>
+                                    <li>Click OK</li>
+                                </ol>
+                                <div class="info-box">
+                                    <strong>Best for:</strong> Different layouts but same category names (products, regions, etc.)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Create Links to Source Data</div>
+                                Make consolidation dynamic (updates when source changes)
+                                <div class="info-box">
+                                    In Consolidate dialog, check "Create links to source data"<br>
+                                    Creates outline with expandable groups showing source details<br>
+                                    Updates automatically when source data changes
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Consolidation Functions Available</div>
+                                <div class="feature-grid">
+                                    <div class="feature-card">
+                                        <h4>Sum</h4>
+                                        <p>Adds all values (most common)</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Count</h4>
+                                        <p>Counts numeric values</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Average</h4>
+                                        <p>Calculates mean value</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Max / Min</h4>
+                                        <p>Finds largest/smallest</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Product</h4>
+                                        <p>Multiplies all values</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>StdDev / Var</h4>
+                                        <p>Statistical calculations</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Practical Consolidation Example</h3>
+                        <div class="formula-box">Scenario: Consolidate Q1 sales from 3 regional offices
+
+Sheet1 (East): Sales data for East region
+Sheet2 (West): Sales data for West region  
+Sheet3 (South): Sales data for South region
+
+Consolidation Steps:
+1. Create "Summary" sheet
+2. Data → Consolidate
+3. Function: Sum
+4. Add references: Sheet1!A1:D50, Sheet2!A1:D50, Sheet3!A1:D50
+5. Check "Top row" and "Left column" (if using labels)
+6. Check "Create links" for dynamic updates
+7. Result: Combined totals from all regions</div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Alternative Consolidation Methods</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📊 Pivot Tables</h4>
+                                <p>Better for complex analysis and multiple summarizations. More flexible than Consolidate tool.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🔗 Power Query</h4>
+                                <p>Best for combining large datasets, different structures, and regular updates. More powerful than Consolidate.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📝 Formulas</h4>
+                                <p>Use SUM, SUMIF, or 3D references for simple consolidations: =SUM(Sheet1:Sheet3!A1)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        3D Reference Shortcut: To sum the same cell across multiple sheets: =SUM(Sheet1:Sheet5!B2) adds B2 from all sheets between Sheet1 and Sheet5.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">15</span>
+                    <span>Data Validation</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is Data Validation?</h3>
+                        <p>Data Validation controls what users can enter in specific cells. It prevents errors by restricting input to specific values, ranges, or formats. Think of it as creating rules for data entry.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Types of Data Validation</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">List (Dropdown)</div>
+                                Most common validation - creates dropdown menu
+                                <ol class="steps-list">
+                                    <li>Select cells to validate</li>
+                                    <li>Data tab → Data Validation</li>
+                                    <li>Allow: List</li>
+                                    <li>Source: Type values separated by commas or reference a range</li>
+                                </ol>
+                                <div class="formula-box">Example 1: Manual list
+Source: Red,Blue,Green,Yellow
+
+Example 2: Range reference  
+Source: =$A$1:$A$10</div>
+                                <div class="tip-box">
+                                    Use named ranges for dropdown sources - easier to manage and update. Create dynamic lists with Tables.
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Whole Number</div>
+                                Restrict to integers within specified range
+                                <div class="info-box">
+                                    <strong>Operators:</strong> between, not between, equal to, not equal to, greater than, less than, greater than or equal to, less than or equal to<br><br>
+                                    <strong>Example:</strong> Allow ages between 18 and 65
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Decimal</div>
+                                Allow decimal numbers with constraints
+                                <div class="formula-box">Example: Price between $0.00 and $999.99
+Data: Decimal
+Between: 0 and 999.99</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Date</div>
+                                Restrict to specific date ranges
+                                <div class="info-box">
+                                    <strong>Use Cases:</strong><br>
+                                    • Future dates only: greater than =TODAY()<br>
+                                    • This year only: between 1/1/2024 and 12/31/2024<br>
+                                    • Within 30 days: between =TODAY() and =TODAY()+30
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Time</div>
+                                Validate time entries
+                                <div class="formula-box">Example: Business hours only
+Data: Time  
+Between: 9:00 AM and 5:00 PM</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Text Length</div>
+                                Control number of characters
+                                <div class="info-box">
+                                    <strong>Examples:</strong><br>
+                                    • Zip codes: exactly 5 characters<br>
+                                    • Usernames: between 6 and 20 characters<br>
+                                    • Product codes: exactly 10 characters
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Custom (Formula)</div>
+                                Create complex validation rules with formulas
+                                <div class="formula-box">Example 1: Email format
+=ISNUMBER(FIND("@",A1))
+
+Example 2: No duplicates
+=COUNTIF($A$1:$A$100,A1)=1
+
+Example 3: Uppercase only
+=EXACT(A1,UPPER(A1))
+
+Example 4: Start date before end date
+=A1&lt;B1</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Data Validation Messages</h3>
+                        <div class="interface-diagram">
+                            <div class="interface-item">
+                                <strong>Input Message (Optional)</strong>
+                                Appears when cell is selected - guides users on what to enter<br>
+                                "Title: Select Region"<br>
+                                "Message: Choose from East, West, North, or South"
+                            </div>
+                            <div class="interface-item">
+                                <strong>Error Alert (Optional)</strong>
+                                Appears when invalid data is entered<br><br>
+                                <strong>Style Options:</strong><br>
+                                • Stop (🛑): Prevents invalid entry completely<br>
+                                • Warning (⚠️): Warns but allows entry<br>
+                                • Information (ℹ️): Shows message but allows entry
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Advanced Validation Techniques</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Dependent Dropdowns</div>
+                                Second dropdown changes based on first selection
+                                <div class="formula-box">Step 1: Create named ranges for each category
+East_Products: Apple, Banana, Orange
+West_Products: Grape, Mango, Kiwi
+
+Step 2: First dropdown (Region)
+Source: East, West
+
+Step 3: Second dropdown (Product)  
+Source: =INDIRECT(A1&"_Products")
+
+When user selects "East", shows East_Products list</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Dynamic Lists with UNIQUE</div>
+                                Dropdown auto-updates with new unique values
+                                <div class="formula-box">=UNIQUE(FILTER(A:A, A:A&lt;&gt;""))
+
+Creates dropdown from unique non-blank values in column A</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Managing Data Validation</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>Copy Validation</h4>
+                                <p>Copy cell → Paste Special → Validation (transfers rules without data)</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Find Validated Cells</h4>
+                                <p>Home → Find & Select → Data Validation (selects all validated cells)</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Circle Invalid Data</h4>
+                                <p>Data → Data Validation → Circle Invalid Data (highlights rule violations)</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Remove Validation</h4>
+                                <p>Select cells → Data Validation → Clear All</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        Data Validation only works for manual entry, not formulas. If a formula result violates validation rules, Excel won't show an error.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">16</span>
+                    <span>Power Query Editor</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is Power Query?</h3>
+                        <p>Power Query is a powerful data transformation and preparation tool built into Excel. It allows you to connect to various data sources, clean and transform data, and load it into Excel - all without writing complex formulas. Changes are recorded as steps that can be refreshed with one click when source data updates.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Accessing Power Query</h3>
+                        <div class="info-box">
+                            <strong>Data tab → Get Data (or Get & Transform Data group)</strong><br><br>
+                            Data Sources:<br>
+                            • From File: Excel, CSV, Text, XML, JSON, PDF<br>
+                            • From Database: SQL Server, Access, Oracle<br>
+                            • From Azure: Various Azure services<br>
+                            • From Online Services: SharePoint, Web<br>
+                            • From Table/Range: Current Excel data<br>
+                            • From Other Sources: OData, Web API, Blank Query
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Power Query Interface</h3>
+                        <div class="interface-diagram">
+                            <div class="interface-item">
+                                <strong>Ribbon</strong>
+                                Contains all transformation tools organized in tabs: Home, Transform, Add Column, View
+                            </div>
+                            <div class="interface-item">
+                                <strong>Queries Pane (Left)</strong>
+                                Lists all queries in your workbook. Right-click for options like Duplicate, Reference, Delete
+                            </div>
+                            <div class="interface-item">
+                                <strong>Data Preview (Center)</strong>
+                                Shows sample of your data (top 1000 rows by default). This is where you see transformations happen
+                            </div>
+                            <div class="interface-item">
+                                <strong>Query Settings (Right)</strong>
+                                Properties: Query name and description<br>
+                                Applied Steps: Every transformation as a step - can edit, delete, or reorder
+                            </div>
+                            <div class="interface-item">
+                                <strong>Formula Bar</strong>
+                                Shows M code (Power Query language) for each step. Advanced users can edit directly
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Essential Power Query Transformations</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Remove Columns</div>
+                                Delete unnecessary columns
+                                <div class="info-box">
+                                    Right-click column → Remove<br>
+                                    Or: Select columns → Home → Remove Columns<br>
+                                    Tip: Use "Remove Other Columns" to keep only selected ones
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Filter Rows</div>
+                                Keep only rows that meet criteria
+                                <div class="info-box">
+                                    Click dropdown in column header<br>
+                                    • Check/uncheck values<br>
+                                    • Text Filters: Contains, Begins With, Ends With<br>
+                                    • Number Filters: Greater Than, Between<br>
+                                    • Date Filters: After, Before, Between
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Remove Duplicates</div>
+                                Keep only unique rows based on selected columns
+                                <div class="info-box">
+                                    Home → Remove Rows → Remove Duplicates<br>
+                                    First occurrence is kept, subsequent duplicates removed
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Change Data Type</div>
+                                Convert columns to correct data types
+                                <div class="info-box">
+                                    Click data type icon in column header<br>
+                                    Types: Text, Whole Number, Decimal, Date, Date/Time, True/False, Currency, Percentage<br>
+                                    Important: Always set correct types for proper calculations
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Replace Values</div>
+                                Find and replace across column
+                                <div class="formula-box">Right-click column → Replace Values
+Value to Find: "N/A"
+Replace With: 0
+
+Replaces all instances in selected column</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Split Column</div>
+                                Divide one column into multiple
+                                <div class="info-box">
+                                    Transform → Split Column<br>
+                                    • By Delimiter: comma, space, custom character<br>
+                                    • By Number of Characters: fixed positions<br>
+                                    • By Positions: specify exact positions<br><br>
+                                    Example: Split "Smith, John" into First Name and Last Name
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Merge Columns</div>
+                                Combine multiple columns into one
+                                <div class="formula-box">Select columns → Transform → Merge Columns
+Separator: Space (or custom)
+New column name: Full Name
+
+Combines "John" and "Smith" → "John Smith"</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Extract Text</div>
+                                Pull out portions of text
+                                <div class="info-box">
+                                    Transform → Extract<br>
+                                    • First Characters<br>
+                                    • Last Characters<br>
+                                    • Range (middle portion)<br>
+                                    • Text Before/After Delimiter
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Fill Down/Up</div>
+                                Copy values to blank cells below or above
+                                <div class="info-box">
+                                    Right-click column → Fill → Down (or Up)<br>
+                                    Useful when headers repeat and you need to fill merged cells
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Unpivot Columns</div>
+                                Convert wide data to long format (reverse of pivot)
+                                <div class="formula-box">Before (Wide):
+Product  | Jan | Feb | Mar
+Apple    | 100 | 150 | 200
+
+After Unpivot (Long):
+Product | Month | Sales
+Apple   | Jan   | 100
+Apple   | Feb   | 150  
+Apple   | Mar   | 200
+
+Select date columns → Transform → Unpivot Columns</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Pivot Column</div>
+                                Convert long data to wide format
+                                <div class="info-box">
+                                    Select column to pivot → Transform → Pivot Column<br>
+                                    Choose values column and aggregation function<br>
+                                    Opposite of Unpivot
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Group By</div>
+                                Aggregate data like a Pivot Table
+                                <div class="formula-box">Home → Group By
+
+Example: Total sales by region
+Group by: Region
+New column: Total Sales
+Operation: Sum
+Column: Sales Amount</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Custom Column</div>
+                                Add calculated column using M formulas
+                                <div class="formula-box">Add Column → Custom Column
+
+Example: Full Name
+= [First Name] & " " & [Last Name]
+
+Example: Total Price  
+= [Quantity] * [Price]</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Conditional Column</div>
+                                Add column with IF logic (no coding required)
+                                <div class="formula-box">Add Column → Conditional Column
+
+If [Sales] > 10000 then "High"
+else if [Sales] > 5000 then "Medium"  
+else "Low"
+
+Visual interface, no formula writing needed</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Combining Queries (Merge & Append)</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Append Queries</div>
+                                Stack tables vertically (add rows)
+                                <div class="info-box">
+                                    <strong>Use when:</strong> Same columns, different data (like monthly reports)<br><br>
+                                    Home → Append Queries<br>
+                                    • Two tables: Select the second table<br>
+                                    • Three or more: Select multiple tables<br><br>
+                                    Result: All rows combined into one table
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Merge Queries</div>
+                                Join tables horizontally (like VLOOKUP)
+                                <div class="info-box">
+                                    <strong>Join Types:</strong><br>
+                                    • Left Outer: All from first table, matches from second<br>
+                                    • Right Outer: All from second table, matches from first<br>
+                                    • Full Outer: All records from both<br>
+                                    • Inner: Only matching records<br>
+                                    • Left Anti: First table records NOT in second<br>
+                                    • Right Anti: Second table records NOT in first<br><br>
+                                    Home → Merge Queries<br>
+                                    Select matching columns from each table
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Power Query Best Practices</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📝 Name Your Steps</h4>
+                                <p>Right-click steps and rename for clarity. "Removed Columns" → "Removed Empty Columns"</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🔄 Refresh Data</h4>
+                                <p>Data → Refresh All updates all queries when source data changes</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📊 Load Settings</h4>
+                                <p>Home → Close & Load To → Choose to load to Table, PivotTable, or Connection Only</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>⚡ Query Folding</h4>
+                                <p>Let database do the work when possible. Steps that "fold" run faster on data source</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🎯 Reference vs Duplicate</h4>
+                                <p>Reference: Points to original, changes together<br>Duplicate: Independent copy</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📋 Document Your Work</h4>
+                                <p>Add descriptions to queries in Properties for team clarity</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        Power Query is NON-DESTRUCTIVE. All transformations are recorded as steps. You can always go back, edit, or delete steps without affecting your source data!
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">17</span>
+                    <span>Excel Dashboards</span>
+                </div>
+                <div class="section-content">
+                    <div class="subsection">
+                        <h3>What is an Excel Dashboard?</h3>
+                        <p>A dashboard is a visual display of the most important information needed to achieve objectives, consolidated on a single screen so it can be monitored at a glance. Excel dashboards combine charts, tables, KPIs, and interactive elements to present data insights clearly and professionally.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Key Components of a Dashboard</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>📊 Charts & Graphs</h4>
+                                <p>Visual representations of data trends, comparisons, and distributions</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📈 KPIs (Key Indicators)</h4>
+                                <p>Single-value metrics showing performance against targets</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📋 Tables</h4>
+                                <p>Detailed data summaries supporting visualizations</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🎚️ Slicers & Controls</h4>
+                                <p>Interactive filters for exploring different data views</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📐 Sparklines</h4>
+                                <p>Mini charts in cells showing trends</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🎨 Formatting</h4>
+                                <p>Colors, fonts, borders creating visual hierarchy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Building a Dashboard - Step by Step</h3>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Define Purpose & Audience</strong><br>
+                                What decisions will this dashboard support? Who will use it? What questions must it answer?
+                            </li>
+                            <li>
+                                <strong>Gather & Prepare Data</strong><br>
+                                Collect data from sources → Clean with Power Query → Structure in Tables → Create Pivot Tables/calculations
+                            </li>
+                            <li>
+                                <strong>Design Layout</strong><br>
+                                Sketch dashboard on paper first. Plan grid layout. Most important info top-left (where eyes go first)
+                            </li>
+                            <li>
+                                <strong>Create Data Structure</strong><br>
+                                • Data Sheet: Raw data (can be hidden)<br>
+                                • Calculations Sheet: Formulas and pivot tables<br>
+                                • Dashboard Sheet: Visual display only
+                            </li>
+                            <li>
+                                <strong>Build Visualizations</strong><br>
+                                Create charts, format them, remove clutter (gridlines, excess labels). Keep it clean!
+                            </li>
+                            <li>
+                                <strong>Add Interactivity</strong><br>
+                                Insert Slicers, Timelines, Form Controls (dropdowns, buttons) for user interaction
+                            </li>
+                            <li>
+                                <strong>Apply Professional Formatting</strong><br>
+                                Consistent colors, clear labels, white space, alignment. Remove worksheet gridlines
+                            </li>
+                            <li>
+                                <strong>Test & Refine</strong><br>
+                                Test all interactive elements. Get feedback from users. Simplify where possible
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Dashboard Best Practices</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">The 5-Second Rule</div>
+                                Users should understand the main message within 5 seconds. If not, simplify!
+                            </li>
+                            <li>
+                                <div class="function-name">Less is More</div>
+                                Don't overcrowd. 5-7 key visualizations maximum. Remove anything that doesn't support a decision.
+                            </li>
+                            <li>
+                                <div class="function-name">Consistent Design</div>
+                                <div class="info-box">
+                                    • Use 2-3 colors maximum (plus white/gray)<br>
+                                    • Same chart type for similar metrics<br>
+                                    • Uniform sizing and spacing<br>
+                                    • Consistent fonts (1-2 types max)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Clear Hierarchy</div>
+                                Most important metrics largest and top-left. Supporting details smaller and lower-right.
+                            </li>
+                            <li>
+                                <div class="function-name">Effective Color Use</div>
+                                <div class="info-box">
+                                    • Green: Positive, on-target, good<br>
+                                    • Red: Negative, below-target, warning<br>
+                                    • Yellow/Orange: Caution, needs attention<br>
+                                    • Blue/Gray: Neutral information<br>
+                                    • Don't use color as the ONLY indicator (accessibility)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Choose Right Chart Types</div>
+                                <div class="feature-grid">
+                                    <div class="feature-card">
+                                        <h4>Column/Bar Charts</h4>
+                                        <p>Compare values across categories</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Line Charts</h4>
+                                        <p>Show trends over time</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Pie/Donut Charts</h4>
+                                        <p>Show parts of whole (5 slices max)</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Scatter Plots</h4>
+                                        <p>Show relationships between variables</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Gauge Charts</h4>
+                                        <p>Progress toward goal/target</p>
+                                    </div>
+                                    <div class="feature-card">
+                                        <h4>Heat Maps</h4>
+                                        <p>Color-coded data density</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Essential Dashboard Techniques</h3>
+                        <ul class="function-list">
+                            <li>
+                                <div class="function-name">Dynamic Titles</div>
+                                Chart titles that change based on selections
+                                <div class="formula-box">Create formula in cell:
+="Sales for " & A1
+
+Link chart title to this cell:
+Click title → Formula Bar → =Sheet1!$B$1</div>
+                            </li>
+                            <li>
+                                <div class="function-name">KPI Cards</div>
+                                Large numbers with conditional formatting
+                                <div class="info-box">
+                                    • Large font (36-72pt)<br>
+                                    • Include comparison (vs last month, vs target)<br>
+                                    • Use icons or color for quick status<br>
+                                    • Add sparkline for mini trend
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Slicers for Filtering</div>
+                                Visual, user-friendly filters
+                                <div class="info-box">
+                                    Insert → Slicer<br>
+                                    • Connect to multiple Pivot Tables (Report Connections)<br>
+                                    • Format with consistent styling<br>
+                                    • Arrange logically at top or side
+                                </div>
+                            </li>
+                            <li>
+                                <div class="function-name">Camera Tool</div>
+                                Link live pictures of charts/ranges
+                                <div class="formula-box">Add Camera to Quick Access Toolbar:
+File → Options → Quick Access → Camera
+
+Use to create linked snapshots of charts/data
+Updates automatically when source changes</div>
+                            </li>
+                            <li>
+                                <div class="function-name">Remove Clutter</div>
+                                Clean up charts for professionalism
+                                <div class="info-box">
+                                    ✅ Remove gridlines<br>
+                                    ✅ Remove chart borders<br>
+                                    ✅ Simplify axis labels<br>
+                                    ✅ Remove legend if obvious<br>
+                                    ✅ Use data labels instead of axis<br>
+                                    ✅ Remove worksheet gridlines (View → uncheck Gridlines)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Advanced Dashboard Features</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <h4>🎮 Form Controls</h4>
+                                <p>Developer tab → Insert → Form Controls<br>Buttons, checkboxes, scrollbars for interaction</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>📊 Combo Charts</h4>
+                                <p>Combine chart types (column + line)<br>Show multiple metrics with different scales</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🔄 Refresh Button</h4>
+                                <p>Insert Shape → Assign Macro to refresh all<br>Makes updates easy for users</p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>🎯 Named Ranges</h4>
+                                <p>Make formulas readable<br>Use in chart data sources for flexibility</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>Dashboard Layout Tips</h3>
+                        <div class="info-box">
+                            <strong>Golden Ratio Grid:</strong> Divide dashboard into sections using grid (3×3 or 4×4). Align all elements to grid for professional look.<br><br>
+                            <strong>F-Pattern Reading:</strong> Users scan in F-shape (top-left → across → down left side). Place most important metrics in this path.<br><br>
+                            <strong>White Space:</strong> Don't fill every pixel. Empty space helps eyes rest and improves focus.<br><br>
+                            <strong>Alignment:</strong> Align everything. Use View → Gridlines temporarily and Page Layout → Align tools.
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        BONUS TIP: Create a "Print Area" version of your dashboard at exact page width (usually fits at 95-100% zoom). This ensures it looks good both on-screen and printed.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p><strong>📊 Microsoft Excel - Complete Professional Guide</strong></p>
+            <p>Master data processing, analysis, and visualization</p>
+            <p style="margin-top: 15px; opacity: 0.8;">From basics to advanced techniques - your comprehensive Excel reference</p>
+        </footer>
+    </div>
+</body>
+</html>
