@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Excel - Complete Professional Guide</title>
+<style>
+:root{--g:#217346;--g2:#185c37;--gl:#e7f4ec;--ink:#1d2b24;--mut:#5c6b63;--bg:#f3f6f4;--card:#fff;--line:#d9e2dc;--blue:#e3f0fb;--yel:#fff6cc;--red:#fde4e1;--grn:#ddf3e4;--org:#e8590c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header.hero{background:linear-gradient(135deg,#185c37,#217346 55%,#2e9e5b);color:#fff;padding:54px 20px 46px;text-align:center}
+.hero h1{margin:0 0 8px;font-size:clamp(30px,5vw,48px)}
+.hero p{margin:6px auto;max-width:720px;opacity:.95}
+.hero .pill{display:inline-block;margin:14px 6px 0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px;font-size:14px}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;max-width:1280px;margin:0 auto;padding:24px 18px}
+aside nav{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+aside nav b{display:block;padding:6px 10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+aside nav a{display:block;padding:6px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14px}
+aside nav a:hover{background:var(--gl)}
+aside nav a.on{background:var(--g);color:#fff}
+#menuBtn{display:none;position:fixed;right:14px;bottom:14px;z-index:20;background:var(--g);color:#fff;border:0;border-radius:999px;padding:12px 18px;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+section.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin-bottom:26px;scroll-margin-top:16px}
+h2{margin:0 0 14px;font-size:26px;display:flex;align-items:center;gap:12px;color:var(--g2)}
+h2 .num{background:var(--g);color:#fff;border-radius:10px;font-size:15px;padding:3px 10px}
+h3{margin:26px 0 8px;font-size:19px}
+h4{margin:16px 0 6px;font-size:16px}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:3px 0}
+code{background:#eef3f0;padding:1px 6px;border-radius:5px;font:.9em Consolas,"Courier New",monospace;color:#0b5d2f}
+pre{background:#14201a;color:#d7f3df;padding:12px 14px;border-radius:10px;overflow:auto;font:13.5px/1.5 Consolas,monospace}
+pre code{background:none;color:inherit;padding:0}
+kbd{background:#fff;border:1px solid #bbb;border-bottom-width:2px;border-radius:5px;padding:0 6px;font:13px Consolas,monospace}
+.tip,.warn,.note{padding:10px 14px;border-radius:8px;margin:14px 0;font-size:15px}
+.tip{border-left:4px solid #2e9e5b;background:#eef8f1}
+.warn{border-left:4px solid #e0a100;background:#fff8e1}
+.note{border-left:4px solid #2b7bd6;background:#eef5fd}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0}
+.cards>div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fbfdfc}
+.cards b{display:block;margin-bottom:2px}
+.tw{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+.t th{background:var(--g);color:#fff;text-align:left;padding:8px 10px;white-space:nowrap}
+.t td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+.t tr:nth-child(even) td{background:#f8fbf9}
+/* Excel grid */
+.grid{overflow-x:auto;margin:6px 0}
+.grid table.xl{border-collapse:collapse;font:13px/1.2 Calibri,"Segoe UI",sans-serif;background:#fff}
+.xl td,.xl th{border:1px solid #d4d4d4;padding:4px 10px;white-space:nowrap}
+.xl th{background:#e9ecea;color:#555;font-weight:600;text-align:center}
+.xl th.rn{min-width:34px}
+.xl th.fl{color:#1565c0}
+.xl td.hd{background:var(--g);color:#fff;font-weight:700}
+.xl td.sub{background:#cfe8d9;font-weight:700}
+.xl td.r{text-align:right}
+.xl td.ctr{text-align:center}
+.xl td.in{background:var(--blue)}
+.xl td.out{background:var(--grn);outline:2px solid #2e9e5b;outline-offset:-2px;font-weight:600}
+.xl td.key{background:var(--yel)}
+.xl td.bad{background:var(--red)}
+.xl td.ok{background:#c6efce;color:#006100}
+.xl td.pvh{background:#dbe9f6;font-weight:700}
+.xl td.tot{font-weight:700;border-top:2px solid #333}
+.xl tr.band td{background:#eef6f1}
+.xl tr.rowy td{background:#fff2a8}
+.tabs{display:flex;gap:2px;background:#f0f0f0;border:1px solid #ccc;border-top:0;padding:3px 6px 0;font:12.5px Calibri,"Segoe UI",sans-serif;width:max-content;min-width:100%}
+.tabs span{padding:3px 14px;border:1px solid #ccc;border-top:0;background:#e4e4e4;color:#555}
+.tabs span.on{background:#fff;color:var(--g);font-weight:700;border-bottom:2px solid var(--g)}
+.gcap{font-size:13px;color:var(--mut);margin:4px 0 0}
+.ex{border:1px solid var(--line);border-left:4px solid var(--g);background:#fafcfb;border-radius:10px;padding:12px 16px;margin:14px 0}
+.ex>h4{margin:0 0 6px;color:var(--g2)}
+.ex>h4:before{content:"▶ Example: ";font-weight:400;color:var(--mut)}
+.flex{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+.arrow{align-self:center;font-size:28px;color:var(--g)}
+.fx{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #c9d3cd;border-radius:6px;padding:6px 10px;margin:8px 0;cursor:copy}
+.fx i{color:#777;font:italic 15px serif;border-right:1px solid #ccc;padding-right:8px}
+.fx code{background:none;font-size:13.5px;word-break:break-all}
+.fx.copied{background:var(--gl)}
+.fx.copied:after{content:"copied ✓";margin-left:auto;font-size:12px;color:var(--g)}
+.res{font-size:14.5px;color:var(--mut)}
+.res b{color:var(--g)}
+.btn{display:inline-block;background:var(--g);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;margin:4px 6px 4px 0}
+.btn.alt{background:#fff;color:var(--g);border:1px solid var(--g)}
+/* interface svg */
+svg.ifc{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+svg.ifc text{font-family:Calibri,"Segoe UI",sans-serif}
+.b circle{fill:var(--org)}
+.b text{fill:#fff;font-size:11px;font-weight:700;text-anchor:middle;font-family:system-ui,sans-serif}
+ol.legend{columns:2;column-gap:28px;font-size:14.5px}
+ol.legend li{break-inside:avoid}
+/* pivot diagram */
+.pv{display:grid;grid-template-columns:repeat(2,minmax(130px,1fr));gap:8px;min-width:280px}
+.pv div{border:2px dashed #9bb8a7;border-radius:10px;padding:8px 10px;font-size:13.5px;background:#fff}
+.pv b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--g2)}
+.chip{display:inline-block;background:var(--g);color:#fff;border-radius:6px;padding:1px 9px;margin:3px 3px 0 0;font-size:13px}
+.chip.o{background:#2b7bd6}.chip.p{background:#8e5bd6}.chip.y{background:#d98c00}
+/* dv */
+.dd{display:inline-block;vertical-align:top;margin:6px 14px 6px 0;font:14px Calibri,"Segoe UI",sans-serif}
+.dd .cell{border:2px solid var(--g);padding:4px 10px;background:#fff;min-width:130px;display:flex;justify-content:space-between;gap:10px}
+.dd ul{list-style:none;margin:0;padding:0;border:1px solid #999;background:#fff;box-shadow:2px 3px 6px rgba(0,0,0,.2)}
+.dd li{margin:0;padding:3px 10px}
+.dd li.s{background:#cde8d7}
+.dd small{color:var(--mut)}
+.msgbox{display:inline-block;border:1px solid #999;background:#f7f7f7;border-radius:4px;font:13px system-ui,sans-serif;max-width:300px;box-shadow:2px 3px 8px rgba(0,0,0,.2);vertical-align:top;margin:6px 14px 6px 0}
+.msgbox h5{margin:0;padding:5px 10px;background:#fff;border-bottom:1px solid #ddd;font-size:13px}
+.msgbox div{padding:10px}
+/* dashboard */
+.dash{background:#eef2f0;border:1px solid #c9d3cd;border-radius:14px;padding:14px;margin:12px 0}
+.dtitle{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-weight:700;color:var(--g2);margin-bottom:10px}
+.dtitle span{font-weight:400;font-size:13px}
+.dtitle span em{font-style:normal;background:#fff;border:1px solid #9bb8a7;border-radius:6px;padding:1px 8px;margin-left:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+.kpi{background:#fff;border-radius:10px;padding:10px 12px;border-top:4px solid var(--g)}
+.kpi small{color:var(--mut);display:block}
+.kpi strong{font-size:26px;line-height:1.2}
+.kpi em{font-style:normal;font-size:12.5px;color:#1b7a3d}
+.kpi.r{border-top-color:#d33}.kpi.r em{color:#c22}
+.kpi.y{border-top-color:#e0a100}.kpi.y em{color:#a06c00}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.chart{background:#fff;border-radius:10px;padding:10px 12px;font-size:13px}
+.chart h5{margin:0 0 8px;font-size:13.5px}
+.hb{display:grid;grid-template-columns:48px 1fr 52px;gap:6px;align-items:center;margin:6px 0}
+.hb i{display:block;height:14px;background:var(--g);border-radius:3px}
+.donut{width:110px;height:110px;border-radius:50%;margin:4px auto 8px;position:relative;background:conic-gradient(#217346 0 55.3%,#2b7bd6 55.3% 81.7%,#e0a100 81.7% 93.1%,#c0c8c3 93.1% 100%)}
+.donut:after{content:"";position:absolute;inset:26px;background:#fff;border-radius:50%}
+.lg span{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px}
+footer{text-align:center;padding:34px 16px 50px;color:var(--mut)}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}aside{display:none}aside.open{display:block;position:fixed;inset:10px;z-index:19}aside.open nav{max-height:100%}#menuBtn{display:block}section.card{padding:18px 16px}ol.legend{columns:1}}
+@media print{aside,#menuBtn,.btn{display:none}.wrap{display:block}section.card{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>📊 Microsoft Excel</h1>
+  <p>The Complete Professional Guide to Data Processing &amp; Analysis</p>
+  <p>Illustrated edition: every topic now comes with Excel-style visuals and worked examples built on <b>one shared sample dataset</b>.</p>
+  <span class="pill">17 chapters</span><span class="pill">Copyable formulas (click any formula bar)</span><span class="pill">Downloadable practice data</span>
+</header>
+
+<button id="menuBtn" type="button">☰ Contents</button>
+
+<div class="wrap">
+<aside id="side"><nav id="nav"><b>Contents</b></nav></aside>
+<main>
+
+<section class="card" id="intro">
+  <h2>What is Microsoft Excel?</h2>
+  <p><b>Microsoft Excel</b> is a powerful spreadsheet application from Microsoft for organizing, analyzing and visualizing data. It is part of the Microsoft Office suite and is one of the most widely used tools for data processing in business, education, finance and personal productivity.</p>
+  <p>Excel uses a grid of cells arranged in rows (numbered 1, 2, 3...) and columns (lettered A, B, C...) where you enter data, perform calculations, build charts and create analytical models.</p>
+  <h3>Why Excel is used for data processing</h3>
+  <div class="cards">
+    <div><b>📈 Data Organization</b>Store large amounts of data in an organized, tabular format that is easy to read and manipulate.</div>
+    <div><b>🔢 Calculations</b>Formulas and functions calculate automatically, from basic arithmetic to advanced statistics.</div>
+    <div><b>📊 Data Visualization</b>Professional charts, graphs and dashboards reveal trends and patterns.</div>
+    <div><b>🔍 Analysis Tools</b>Pivot Tables, Power Query and advanced functions summarize data quickly.</div>
+    <div><b>🤝 Collaboration</b>Share workbooks, track changes and co-author in real time with cloud features.</div>
+    <div><b>⚡ Automation</b>Macros, formulas and VBA remove repetitive work and reduce errors.</div>
+  </div>
+
+  <h3>📦 The sample dataset used in this guide</h3>
+  <p>Most examples below use this small sales table in <b>A1:F11</b>. Open a blank sheet, paste it at A1 and you can follow every example yourself.</p>
+  <div class="grid" data-g="sales"></div>
+  <button class="btn" id="copyData" type="button">📋 Copy data (paste into Excel)</button>
+  <button class="btn alt" id="dlData" type="button">⬇ Download as CSV</button>
+  <div class="note"><b>How to read the examples:</b> <span style="background:var(--blue);padding:0 6px">blue</span> = input / criteria, <span style="background:var(--grn);padding:0 6px;outline:2px solid #2e9e5b">green</span> = result, <span style="background:var(--yel);padding:0 6px">yellow</span> = the matching item. Click any formula bar to copy the formula.</div>
+</section>
+
+<!-- 1 -->
+<section class="card" id="s1">
+  <h2><span class="num">01</span>Sheets and Workbooks</h2>
+  <h3>What is a Workbook?</h3>
+  <p>A <b>workbook</b> is an Excel file holding one or more worksheets, saved as <code>.xlsx</code> (or <code>.xls</code> in older versions). Think of it as a binder with many pages.</p>
+  <div class="ex"><h4>A workbook with three sheets</h4>
+    <p>The file <b>Sales_Report_2024.xlsx</b> is the workbook; “January Sales”, “February Sales” and “Summary” are its worksheets (tabs at the bottom).</p>
+    <div class="grid" data-g="wb"></div>
+  </div>
+  <h3>What is a Worksheet?</h3>
+  <p>A <b>worksheet</b> is a single page inside a workbook: a grid of cells where you enter and manipulate data.</p>
+  <div class="cards">
+    <div><b>🔢 Default structure</b>1,048,576 rows and 16,384 columns (A to XFD)</div>
+    <div><b>📑 Multiple sheets</b>Unlimited (limited by memory)</div>
+    <div><b>🏷️ Sheet tabs</b>Bottom of the window; rename, color and reorder them</div>
+    <div><b>🔗 Navigation</b><kbd>Ctrl</kbd>+<kbd>PgUp</kbd>/<kbd>PgDn</kbd> switches sheets</div>
+  </div>
+  <h3>Common sheet operations</h3>
+  <div class="tw"><table class="t"><tr><th>Task</th><th>How</th></tr>
+  <tr><td>Insert new sheet</td><td>Click “+” next to the tabs or press <kbd>Shift</kbd>+<kbd>F11</kbd></td></tr>
+  <tr><td>Rename</td><td>Double-click the tab, or right-click → Rename</td></tr>
+  <tr><td>Move / Copy</td><td>Drag the tab (hold <kbd>Ctrl</kbd> to copy) or right-click → Move or Copy</td></tr>
+  <tr><td>Delete</td><td>Right-click → Delete (<b>cannot be undone</b>)</td></tr>
+  <tr><td>Hide / Unhide</td><td>Right-click → Hide (or Unhide)</td></tr>
+  <tr><td>Tab color</td><td>Right-click → Tab Color</td></tr></table></div>
+</section>
+
+<!-- 2 -->
+<section class="card" id="s2">
+  <h2><span class="num">02</span>CSV vs Excel Files</h2>
+  <p>Both store data, but they differ in structure, features and use cases. Here is the <i>same data</i> in both formats:</p>
+  <div class="flex">
+    <div><h4>📄 In a CSV file (plain text)</h4>
+<pre><code>Region,Product,Qty,Total
+East,Laptop,5,4000
+West,Mouse,40,600
+North,Monitor,8,1760</code></pre></div>
+    <span class="arrow">→</span>
+    <div><h4>📊 Opened in Excel</h4><div class="grid" data-g="csvx"></div></div>
+  </div>
+  <div class="tw"><table class="t"><tr><th>Feature</th><th>CSV (.csv)</th><th>Excel (.xlsx)</th></tr>
+  <tr><td><b>Full name</b></td><td>Comma-Separated Values</td><td>Excel Workbook</td></tr>
+  <tr><td><b>File type</b></td><td>Plain text</td><td>Binary/XML</td></tr>
+  <tr><td><b>File size</b></td><td>Smaller (text only)</td><td>Larger (formatting, formulas)</td></tr>
+  <tr><td><b>Multiple sheets</b></td><td>❌ One sheet only</td><td>✅ Unlimited</td></tr>
+  <tr><td><b>Formulas</b></td><td>❌ Not supported</td><td>✅ Fully supported</td></tr>
+  <tr><td><b>Formatting</b></td><td>❌ No colors, fonts, borders</td><td>✅ Complete</td></tr>
+  <tr><td><b>Charts &amp; images</b></td><td>❌ Not supported</td><td>✅ Supported</td></tr>
+  <tr><td><b>Data types</b></td><td>All text</td><td>Numbers, dates, text, currency...</td></tr>
+  <tr><td><b>Compatibility</b></td><td>✅ Universal</td><td>Needs Excel or compatible software</td></tr>
+  <tr><td><b>Best for</b></td><td>Data transfer, import/export, databases</td><td>Analysis, reports, presentations</td></tr></table></div>
+  <div class="cards">
+    <div><b>📄 Use CSV when...</b>importing/exporting to databases, moving data between systems, you need a light file, compatibility is critical, or you work with programming languages.</div>
+    <div><b>📊 Use Excel when...</b>you need formulas, charts, multiple related sheets, formatting, reports or dashboards.</div>
+  </div>
+  <div class="warn">Saving Excel as CSV loses formatting, converts formulas to values, keeps only the active sheet and drops charts. Excel warns you first.</div>
+</section>
+
+<!-- 3 -->
+<section class="card" id="s3">
+  <h2><span class="num">03</span>The Excel Interface</h2>
+  <p>Knowing the interface makes you faster. The numbered badges below match the list underneath.</p>
+<svg class="ifc" viewBox="0 0 900 370" role="img" aria-label="Annotated Excel window with 15 numbered parts">
+<defs><pattern id="gp" width="104" height="24" patternUnits="userSpaceOnUse" x="30" y="156"><path d="M104 0V24H0" fill="none" stroke="#d4d4d4"/></pattern></defs>
+<rect width="900" height="370" fill="#fff" stroke="#9aa"/>
+<rect width="900" height="26" fill="#217346"/>
+<g fill="#fff" opacity=".85"><rect x="8" y="6" width="14" height="14" rx="2"/><rect x="28" y="6" width="14" height="14" rx="2"/><rect x="48" y="6" width="14" height="14" rx="2"/></g>
+<text x="450" y="18" fill="#fff" font-size="12" text-anchor="middle">Sales_Report_2024.xlsx – Excel</text>
+<rect y="26" width="900" height="24" fill="#f3f3f3"/>
+<text x="12" y="43" font-size="12" fill="#444">File &#160;&#160; Home &#160;&#160; Insert &#160;&#160; Page Layout &#160;&#160; Formulas &#160;&#160; Data &#160;&#160; Review &#160;&#160; View</text>
+<rect y="50" width="900" height="52" fill="#fafafa" stroke="#ddd"/>
+<g fill="#cfe8d9" stroke="#9bb8a7"><rect x="14" y="58" width="44" height="36" rx="3"/><rect x="70" y="58" width="90" height="16" rx="3"/><rect x="70" y="78" width="90" height="16" rx="3"/><rect x="190" y="58" width="60" height="36" rx="3"/><rect x="262" y="58" width="120" height="16" rx="3"/><rect x="262" y="78" width="120" height="16" rx="3"/></g>
+<rect x="8" y="108" width="80" height="22" fill="#fff" stroke="#999"/><text x="14" y="123" font-size="12">D2</text>
+<rect x="100" y="108" width="790" height="22" fill="#fff" stroke="#999"/><text x="108" y="123" font-size="12" font-style="italic" fill="#666">fx</text><text x="130" y="123" font-size="12">4000</text>
+<rect x="0" y="136" width="30" height="20" fill="#e6e6e6" stroke="#bbb"/><path d="M26 140V152H14Z" fill="#999"/>
+<rect x="30" y="136" width="832" height="20" fill="#e6e6e6" stroke="#bbb"/>
+<g font-size="12" fill="#444" text-anchor="middle"><text x="82" y="150">A</text><text x="186" y="150">B</text><text x="290" y="150">C</text><text x="394" y="150">D</text><text x="498" y="150">E</text><text x="602" y="150">F</text><text x="706" y="150">G</text><text x="810" y="150">H</text></g>
+<rect x="0" y="156" width="30" height="144" fill="#e6e6e6" stroke="#bbb"/>
+<g font-size="12" fill="#444" text-anchor="middle"><text x="15" y="172">1</text><text x="15" y="196">2</text><text x="15" y="220">3</text><text x="15" y="244">4</text><text x="15" y="268">5</text><text x="15" y="292">6</text></g>
+<rect x="30" y="156" width="832" height="144" fill="url(#gp)"/>
+<g font-size="12" font-weight="700"><text x="36" y="172">Region</text><text x="140" y="172">Product</text><text x="244" y="172">Qty</text><text x="348" y="172">Total</text><text x="452" y="172">Status</text></g>
+<g font-size="12"><text x="36" y="196">East</text><text x="140" y="196">Laptop</text><text x="244" y="196">5</text><text x="348" y="196">4,000</text><text x="452" y="196">Paid</text>
+<text x="36" y="220">West</text><text x="140" y="220">Mouse</text><text x="244" y="220">40</text><text x="348" y="220">600</text><text x="452" y="220">Paid</text></g>
+<rect x="342" y="180" width="104" height="24" fill="none" stroke="#217346" stroke-width="2.5"/>
+<rect x="866" y="156" width="14" height="144" fill="#eee" stroke="#ccc"/><rect x="867" y="160" width="12" height="50" fill="#bbb"/>
+<rect x="30" y="300" width="836" height="14" fill="#eee" stroke="#ccc"/><rect x="34" y="302" width="260" height="10" fill="#bbb"/>
+<rect y="314" width="900" height="26" fill="#f0f0f0" stroke="#ccc"/>
+<text x="8" y="332" font-size="12" fill="#555">◀ ▶</text>
+<rect x="46" y="316" width="76" height="22" fill="#fff" stroke="#217346"/><text x="84" y="331" text-anchor="middle" font-size="12" fill="#217346" font-weight="bold">Sheet1</text>
+<text x="150" y="331" font-size="12" fill="#555">Summary</text><text x="215" y="331" font-size="14" fill="#555">＋</text>
+<rect y="340" width="900" height="30" fill="#f3f3f3" stroke="#ccc"/>
+<text x="14" y="359" font-size="12" fill="#444">Ready</text><text x="300" y="359" font-size="12" fill="#444">Average: 1,859   Count: 7   Sum: 13,015</text>
+<g fill="#bbb"><rect x="700" y="349" width="12" height="12"/><rect x="718" y="349" width="12" height="12"/><rect x="736" y="349" width="12" height="12"/></g>
+<line x1="770" y1="355" x2="860" y2="355" stroke="#888"/><circle cx="815" cy="355" r="4" fill="#555"/><text x="866" y="359" font-size="11" fill="#444">100%</text>
+<g class="b"><circle cx="70" cy="13" r="9"/><text x="70" y="17">1</text></g>
+<g class="b"><circle cx="340" cy="13" r="9"/><text x="340" y="17">2</text></g>
+<g class="b"><circle cx="870" cy="38" r="9"/><text x="870" y="42">3</text></g>
+<g class="b"><circle cx="94" cy="119" r="9"/><text x="94" y="123">4</text></g>
+<g class="b"><circle cx="600" cy="119" r="9"/><text x="600" y="123">5</text></g>
+<g class="b"><circle cx="560" cy="146" r="9"/><text x="560" y="150">6</text></g>
+<g class="b"><circle cx="15" cy="230" r="9"/><text x="15" y="234">7</text></g>
+<g class="b"><circle cx="15" cy="146" r="9"/><text x="15" y="150">8</text></g>
+<g class="b"><circle cx="640" cy="250" r="9"/><text x="640" y="254">9</text></g>
+<g class="b"><circle cx="128" cy="327" r="9"/><text x="128" y="331">10</text></g>
+<g class="b"><circle cx="32" cy="327" r="9"/><text x="32" y="331">11</text></g>
+<g class="b"><circle cx="150" cy="355" r="9"/><text x="150" y="359">12</text></g>
+<g class="b"><circle cx="684" cy="355" r="9"/><text x="684" y="359">13</text></g>
+<g class="b"><circle cx="815" cy="345" r="9"/><text x="815" y="349">14</text></g>
+<g class="b"><circle cx="873" cy="230" r="9"/><text x="873" y="234">15</text></g>
+</svg>
+  <ol class="legend">
+    <li><b>Quick Access Toolbar:</b> Save, Undo, Redo; customizable.</li>
+    <li><b>Title Bar:</b> workbook name and Excel icon.</li>
+    <li><b>Ribbon:</b> tabs of command groups: File (Backstage), Home, Insert, Page Layout, Formulas, Data, Review, View.</li>
+    <li><b>Name Box:</b> active cell address (e.g. D2) or named range; type a reference to jump there.</li>
+    <li><b>Formula Bar:</b> contents of the active cell; edit formulas here.</li>
+    <li><b>Column Headers:</b> A, B, C...; click to select, double-click a border to auto-fit.</li>
+    <li><b>Row Headers:</b> 1, 2, 3...; click to select a row.</li>
+    <li><b>Select All button:</b> selects the whole sheet (<kbd>Ctrl</kbd>+<kbd>A</kbd>).</li>
+    <li><b>Worksheet Grid:</b> main working area of cells.</li>
+    <li><b>Sheet Tabs:</b> switch sheets; right-click for options.</li>
+    <li><b>Sheet Navigation Buttons:</b> scroll tabs when you have many sheets.</li>
+    <li><b>Status Bar:</b> quick Sum/Average/Count for the selection, view mode, page number.</li>
+    <li><b>View Buttons:</b> Normal, Page Layout, Page Break Preview.</li>
+    <li><b>Zoom Slider:</b> 10%–400% (<kbd>Ctrl</kbd>+mouse wheel).</li>
+    <li><b>Scroll Bars:</b> navigate large sheets.</li>
+  </ol>
+  <div class="ex"><h4>Status bar quick calculation</h4>
+    <p>Select a few Total cells from the sample data, for example D2:D5 (4,000 + 600 + 1,760 + 2,400). The status bar instantly shows Sum 8,760, Average 2,190 and Count 4, with no formula needed. Right-click the status bar to add Min, Max and more.</p></div>
+  <div class="tip">Press <kbd>Ctrl</kbd>+<kbd>F1</kbd> to collapse or expand the Ribbon, or double-click any tab name.</div>
+  <h3>Essential keyboard shortcuts</h3>
+  <div class="cards">
+    <div><b>Navigation</b><kbd>Ctrl</kbd>+<kbd>Home</kbd> go to A1<br><kbd>Ctrl</kbd>+<kbd>End</kbd> last used cell<br><kbd>Ctrl</kbd>+<kbd>Arrow</kbd> jump to edge</div>
+    <div><b>Selection</b><kbd>Ctrl</kbd>+<kbd>A</kbd> select all<br><kbd>Shift</kbd>+<kbd>Space</kbd> select row<br><kbd>Ctrl</kbd>+<kbd>Space</kbd> select column</div>
+    <div><b>Editing</b><kbd>F2</kbd> edit cell<br><kbd>Ctrl</kbd>+<kbd>D</kbd> fill down<br><kbd>Ctrl</kbd>+<kbd>R</kbd> fill right</div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="card" id="s4">
+  <h2><span class="num">04</span>Cell Formatting</h2>
+  <p>Cell formatting changes <i>how data looks</i> without changing its value: fonts, colors, borders, alignment and number formats.</p>
+  <div class="ex"><h4>A formatted report (title, header, banded rows, aligned columns)</h4>
+    <div class="grid" data-g="fmt"></div>
+    <p class="res">Merged title row · green-tinted header · text left-aligned · numbers right-aligned · status centered and color-coded · alternating row fill.</p>
+  </div>
+  <h3>Font formatting</h3>
+  <div class="cards">
+    <div><b>📝 Font type &amp; size</b>Arial, Calibri...; 8pt–72pt. Use larger fonts for headers.</div>
+    <div><b>🎨 Font color</b>Emphasize with contrasting colors for readability.</div>
+    <div><b>💪 Styles</b><b>Bold</b> <kbd>Ctrl</kbd>+<kbd>B</kbd>, <i>Italic</i> <kbd>Ctrl</kbd>+<kbd>I</kbd>, <u>Underline</u> <kbd>Ctrl</kbd>+<kbd>U</kbd>, <s>Strikethrough</s></div>
+  </div>
+  <h3>Cell alignment</h3>
+  <div class="tw"><table class="t"><tr><th>Option</th><th>What it does</th></tr>
+  <tr><td>Horizontal alignment</td><td>Left, Center, Right, Justify</td></tr>
+  <tr><td>Vertical alignment</td><td>Top, Middle, Bottom</td></tr>
+  <tr><td>Wrap Text</td><td>Shows multiple lines inside a cell instead of overflowing</td></tr>
+  <tr><td>Merge Cells</td><td>Combines cells into one (good for titles). <b>Keeps only the top-left value.</b></td></tr>
+  <tr><td>Text orientation</td><td>Rotate text 0°–90° for narrow vertical headers</td></tr>
+  <tr><td>Indent</td><td>Adds space before text for hierarchy</td></tr></table></div>
+  <h3>Borders, fill and styles</h3>
+  <p><b>Borders</b> (All, Outline, Top/Bottom, Custom) build tables and separate sections. <b>Fill color</b> adds background; use light colors, and alternating row colors improve scanning. <b>Patterns</b> are rarely used professionally.</p>
+  <p><b>Cell Styles</b> are ready-made combinations: Good/Bad/Neutral, Titles and Headings, Themed styles, and number-format shortcuts (Currency, Percent, Comma).</p>
+  <div class="tip">Create custom styles via Home → Cell Styles → New Cell Style to keep formatting consistent across a workbook.</div>
+</section>
+
+<!-- 5 -->
+<section class="card" id="s5">
+  <h2><span class="num">05</span>Data Formatting</h2>
+  <h3>Number formats</h3>
+  <p>Control how numbers appear while preserving their real value for calculations. Shown here with the value <b>1234.5</b> (25% = 0.25):</p>
+  <div class="tw"><table class="t"><tr><th>Format</th><th>Description</th><th>Displays</th></tr>
+  <tr><td><b>General</b></td><td>Default, no specific format</td><td>1234.5</td></tr>
+  <tr><td><b>Number</b></td><td>Decimals, thousand separators</td><td>1,234.50</td></tr>
+  <tr><td><b>Currency</b></td><td>Money with symbol</td><td>$1,234.50</td></tr>
+  <tr><td><b>Accounting</b></td><td>Aligns symbols and decimals</td><td>$ 1,234.50</td></tr>
+  <tr><td><b>Percentage</b></td><td>Multiplies by 100, adds %</td><td>0.25 → 25.00%</td></tr>
+  <tr><td><b>Fraction</b></td><td>Shows fractions</td><td>0.25 → 1/4</td></tr>
+  <tr><td><b>Scientific</b></td><td>Exponential notation</td><td>1.23E+03</td></tr>
+  <tr><td><b>Text</b></td><td>Treats numbers as text</td><td>'1234 (apostrophe prefix)</td></tr></table></div>
+  <h3>Date and time formats</h3>
+  <p>Excel stores a date as a <b>serial number</b> (days since 1 January 1900), which is why you can do math with dates. The same cell can look very different depending on the format:</p>
+  <div class="ex"><h4>One value, many looks</h4>
+  <div class="tw"><table class="t"><tr><th>Cell value</th><th>Format</th><th>Displays</th></tr>
+  <tr><td>45365</td><td>General</td><td>45365</td></tr>
+  <tr><td>45365</td><td>Short Date</td><td>3/14/2024</td></tr>
+  <tr><td>45365</td><td>d-mmm-yy</td><td>14-Mar-24</td></tr>
+  <tr><td>45365</td><td>mmmm d, yyyy</td><td>March 14, 2024</td></tr>
+  <tr><td>45365</td><td>dddd, mmmm d, yyyy</td><td>Thursday, March 14, 2024</td></tr>
+  <tr><td>45365.5625</td><td>m/d/yyyy h:mm AM/PM</td><td>3/14/2024 1:30 PM</td></tr>
+  <tr><td>45365.5625</td><td>dd/mm/yyyy hh:mm</td><td>14/03/2024 13:30</td></tr></table></div></div>
+  <p>Time formats: <code>1:30 PM</code>, <code>13:30</code>, <code>1:30:55 PM</code>, <code>13:30:55</code>.</p>
+  <h3>Custom number formats</h3>
+  <p>Structure: <code>Positive;Negative;Zero;Text</code>. Use <code>#</code> for optional digits, <code>0</code> for forced digits, text in "quotes" and <code>[Color]</code> for coloring.</p>
+  <div class="tw"><table class="t"><tr><th>Format code</th><th>Value</th><th>Displays</th></tr>
+  <tr><td><code>#,##0.00 "units"</code></td><td>1234.5</td><td>1,234.50 units</td></tr>
+  <tr><td><code>[Blue]#,##0;[Red]-#,##0</code></td><td>1500 / -1500</td><td><span style="color:#1e50d6">1,500</span> / <span style="color:#d00">-1,500</span></td></tr>
+  <tr><td><code>000000</code></td><td>123</td><td>000123</td></tr>
+  <tr><td><code>"Code: "0000</code></td><td>123</td><td>Code: 0123</td></tr></table></div>
+</section>
+
+<!-- 6 -->
+<section class="card" id="s6">
+  <h2><span class="num">06</span>Array Functions</h2>
+  <p>Array functions calculate on many values at once and can return many results. Modern Excel (Microsoft 365) has <b>dynamic arrays</b> that automatically <i>spill</i> into neighboring cells.</p>
+  <div class="ex"><h4>FILTER: rows where Total &gt; 2000</h4>
+    <div class="fx"><i>fx</i><code>=FILTER(A2:F11, D2:D11&gt;2000)</code></div>
+    <div class="flex"><div><div class="grid" data-g="f_in"></div><p class="gcap">Source data (criteria column D in blue)</p></div><span class="arrow">→</span><div><div class="grid" data-g="f_out"></div><p class="gcap">Result spills from H2 (4 rows × 6 columns)</p></div></div></div>
+  <div class="ex"><h4>SORT: biggest sales first</h4>
+    <div class="fx"><i>fx</i><code>=SORT(A2:D11, 4, -1)</code></div>
+    <div class="grid" data-g="sort_out"></div>
+    <p class="res">Sort by column <b>4</b> (Total), <b>-1</b> = descending. Top 5 of 10 rows shown.</p></div>
+  <div class="ex"><h4>UNIQUE: list each value once</h4>
+    <div class="fx"><i>fx</i><code>=UNIQUE(A2:A11)</code></div>
+    <div class="grid" data-g="u_out"></div>
+    <p class="res">10 region entries collapse to 4 unique regions. Use this to build report headings or dropdown lists.</p></div>
+  <h3>Dynamic array functions</h3>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+  <tr><td><b>FILTER()</b></td><td>Return rows matching a condition</td><td><code>=FILTER(A2:F11, D2:D11&gt;1000)</code></td></tr>
+  <tr><td><b>SORT()</b></td><td>Sort by one or more columns</td><td><code>=SORT(A2:C100, 2, -1)</code></td></tr>
+  <tr><td><b>SORTBY()</b></td><td>Sort one range by values in another</td><td><code>=SORTBY(A2:B100, C2:C100, -1)</code></td></tr>
+  <tr><td><b>UNIQUE()</b></td><td>Remove duplicates</td><td><code>=UNIQUE(A2:A11)</code></td></tr>
+  <tr><td><b>SEQUENCE()</b></td><td>Generate number sequences</td><td><code>=SEQUENCE(5)</code> → 1,2,3,4,5 down a column<br><code>=SEQUENCE(10,1,1,1)</code> → 1 to 10</td></tr>
+  <tr><td><b>RANDARRAY()</b></td><td>Random number arrays</td><td><code>=RANDARRAY(5,3,1,100,TRUE)</code> → 5 rows × 3 columns of integers 1–100</td></tr>
+  <tr><td><b>XLOOKUP()</b></td><td>Modern lookup, can return several columns</td><td><code>=XLOOKUP(E2, A:A, B:C)</code></td></tr></table></div>
+  <h3>Traditional array functions</h3>
+  <p>These needed <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd> in older Excel.</p>
+  <div class="ex"><h4>SUMPRODUCT: total order value</h4>
+    <div class="flex"><div class="grid" data-g="sp"></div>
+    <div><div class="fx"><i>fx</i><code>=SUMPRODUCT(B2:B4, C2:C4)</code></div>
+    <p class="res">(10×5) + (4×20) + (2×45) = 50 + 80 + 90 = <b>220</b></p>
+    <div class="fx"><i>fx</i><code>=TRANSPOSE(A1:C1)</code></div>
+    <p class="res">Turns 3 header cells in a row into 3 cells in a column.</p></div></div></div>
+  <div class="warn">Dynamic arrays “spill” into neighboring cells. If something blocks the spill range you get a <b>#SPILL!</b> error; clear the cells in its way.</div>
+</section>
+
+<!-- 7 -->
+<section class="card" id="s7">
+  <h2><span class="num">07</span>Text Functions</h2>
+  <p>Manipulate and analyze text. Each row shows the formula and what Excel returns.</p>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Formula</th><th>Result</th></tr>
+  <tr><td><b>LEFT / RIGHT / MID</b><br>extract part of text</td><td><code>=LEFT("Excel2024Guide",5)</code><br><code>=RIGHT("Excel2024Guide",5)</code><br><code>=MID("Excel2024Guide",6,4)</code></td><td>Excel<br>Guide<br>2024</td></tr>
+  <tr><td><b>LEN</b></td><td><code>=LEN("Hello")</code></td><td>5</td></tr>
+  <tr><td><b>CONCATENATE / CONCAT / TEXTJOIN / &amp;</b></td><td>with A1 = John, B1 = Smith:<br><code>=A1&amp;" "&amp;B1</code> or <code>=CONCATENATE(A1," ",B1)</code><br><code>=TEXTJOIN(", ",TRUE,A1:B1)</code></td><td><br>John Smith<br>John, Smith</td></tr>
+  <tr><td><b>UPPER / LOWER / PROPER</b></td><td><code>=UPPER("hello")</code><br><code>=LOWER("HELLO")</code><br><code>=PROPER("john smith")</code></td><td>HELLO<br>hello<br>John Smith</td></tr>
+  <tr><td><b>TRIM</b><br>removes extra spaces</td><td><code>=TRIM("  Hello   World  ")</code></td><td>Hello World</td></tr>
+  <tr><td><b>SUBSTITUTE / REPLACE</b></td><td><code>=SUBSTITUTE("2024-01-05","-","/")</code><br><code>=REPLACE("ABCDEF",3,2,"XX")</code></td><td>2024/01/05<br>ABXXEF</td></tr>
+  <tr><td><b>FIND / SEARCH</b><br>FIND is case-sensitive</td><td><code>=FIND("@","rakesh@mail.com")</code><br><code>=SEARCH("abc","XABCX")</code></td><td>7<br>2</td></tr>
+  <tr><td><b>TEXT</b></td><td><code>=TEXT(1234.5,"$#,##0.00")</code><br><code>=TEXT(TODAY(),"DD-MMM-YYYY")</code></td><td>$1,234.50<br>23-Oct-2026 (today)</td></tr>
+  <tr><td><b>VALUE</b></td><td><code>=VALUE("1234")</code></td><td>1234 (a real number)</td></tr>
+  <tr><td><b>TEXTSPLIT</b> (365)</td><td><code>=TEXTSPLIT("apple,banana,orange",",")</code></td><td>apple | banana | orange (3 cells)</td></tr></table></div>
+  <div class="ex"><h4>Combining functions: pull the user name out of an email</h4>
+    <div class="flex"><div class="grid" data-g="mail"></div></div>
+    <div class="fx"><i>fx</i><code>=LEFT(A2, FIND("@",A2)-1)</code></div>
+    <p class="res">FIND returns the position of “@”; subtract 1 to keep only the characters before it. Fill down for the whole list.</p></div>
+  <div class="tip">The <code>&amp;</code> operator is a shortcut for concatenation: <code>=A1&amp;" "&amp;B1</code> equals <code>=CONCATENATE(A1," ",B1)</code>.</div>
+</section>
+
+<!-- 8 -->
+<section class="card" id="s8">
+  <h2><span class="num">08</span>Logical Functions</h2>
+  <p>Make decisions in formulas based on conditions.</p>
+  <div class="ex"><h4>IF + AND: who qualifies for a bonus?</h4>
+    <p>Rule: a sale qualifies when <b>Total &gt; 2000</b> <u>and</u> <b>Status = Paid</b>.</p>
+    <div class="fx"><i>fx</i><code>=IF(AND(C2&gt;2000, D2="Paid"), "Qualified", "Not Qualified")</code></div>
+    <div class="grid" data-g="ifand"></div>
+    <p class="res">Formula in E2, filled down. Notice West Laptop (5,600) fails because it is still <b>Pending</b>.</p></div>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>What it does</th><th>Example → Result</th></tr>
+  <tr><td><b>IF()</b></td><td>One value if TRUE, another if FALSE</td><td><code>=IF(4000&gt;2000,"High","Low")</code> → High</td></tr>
+  <tr><td><b>Nested IF()</b></td><td>Tests several conditions in order</td><td><code>=IF(A1&gt;=90,"A",IF(A1&gt;=80,"B",IF(A1&gt;=70,"C","F")))</code> with A1 = 85 → B</td></tr>
+  <tr><td><b>IFS()</b> (365)</td><td>Cleaner than nested IF</td><td><code>=IFS(A1&gt;=90,"A",A1&gt;=80,"B",A1&gt;=70,"C",TRUE,"F")</code> with A1 = 85 → B</td></tr>
+  <tr><td><b>AND()</b></td><td>TRUE only if ALL are true</td><td><code>=AND(4000&gt;2000, "Paid"="Paid")</code> → TRUE</td></tr>
+  <tr><td><b>OR()</b></td><td>TRUE if ANY is true</td><td><code>=OR(A1="Red",A1="Blue")</code> with A1 = Blue → TRUE</td></tr>
+  <tr><td><b>NOT()</b></td><td>Reverses TRUE/FALSE</td><td><code>=NOT("Paid"="Cancelled")</code> → TRUE</td></tr>
+  <tr><td><b>XOR()</b></td><td>TRUE if an odd number of conditions are TRUE</td><td><code>=XOR(60&gt;50, 40&gt;50)</code> → TRUE</td></tr>
+  <tr><td><b>IFERROR()</b></td><td>Handles any error gracefully</td><td><code>=IFERROR(10/0,"Error")</code> → Error</td></tr>
+  <tr><td><b>IFNA()</b></td><td>Handles only #N/A (common in lookups)</td><td><code>=IFNA(VLOOKUP("Tablet",B2:C5,2,0),"Not Found")</code> → Not Found</td></tr>
+  <tr><td><b>SWITCH()</b></td><td>Match a value against several cases</td><td><code>=SWITCH("M","S","Small","M","Medium","L","Large","Unknown")</code> → Medium</td></tr></table></div>
+  <h3>Combining logical functions</h3>
+<pre><code>=IF(AND(A1&gt;100, B1="Active"), "Qualified", "Not Qualified")
+=IF(OR(A1="Premium", B1&gt;5000), "VIP", "Regular")
+=IFERROR(IF(A1/B1&gt;0.5, "High", "Low"), "No Data")</code></pre>
+  <div class="tip">Use <code>IFS()</code> instead of nested <code>IF()</code> when you have 3+ conditions; it is far easier to read and maintain.</div>
+</section>
+
+<!-- 9 -->
+<section class="card" id="s9">
+  <h2><span class="num">09</span>Advanced Functions</h2>
+  <h3>Mathematical &amp; statistical functions</h3>
+  <p>Results below are calculated from the sample data (<code>D</code> = Total, <code>E</code> = Status, <code>A</code> = Region, rows 2–11).</p>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Formula</th><th>Result</th></tr>
+  <tr><td>SUM</td><td><code>=SUM(D2:D11)</code></td><td><b>21,695</b></td></tr>
+  <tr><td>SUMIF</td><td><code>=SUMIF(E2:E11,"Paid",D2:D11)</code></td><td><b>13,015</b></td></tr>
+  <tr><td>SUMIFS (multiple conditions)</td><td><code>=SUMIFS(D2:D11,A2:A11,"East",E2:E11,"Paid")</code></td><td><b>5,125</b> (4,000 + 1,125)</td></tr>
+  <tr><td>AVERAGE / AVERAGEIF(S)</td><td><code>=AVERAGEIF(E2:E11,"Paid",D2:D11)</code></td><td><b>1,859.29</b> (13,015 ÷ 7)</td></tr>
+  <tr><td>COUNT / COUNTA / COUNTBLANK</td><td><code>=COUNT(C2:C11)</code> · <code>=COUNTA(A2:A11)</code></td><td><b>10</b> · <b>10</b></td></tr>
+  <tr><td>COUNTIF</td><td><code>=COUNTIF(E2:E11,"Paid")</code></td><td><b>7</b></td></tr>
+  <tr><td>COUNTIFS</td><td><code>=COUNTIFS(A2:A11,"West",E2:E11,"Paid")</code></td><td><b>2</b></td></tr>
+  <tr><td>MAX / MIN</td><td><code>=MAX(D2:D11)</code> · <code>=MIN(D2:D11)</code></td><td><b>5,600</b> · <b>600</b></td></tr>
+  <tr><td>LARGE / SMALL</td><td><code>=LARGE(D2:D11,2)</code> · <code>=SMALL(D2:D11,3)</code></td><td><b>4,000</b> · <b>1,125</b></td></tr>
+  <tr><td>ROUND / ROUNDUP / ROUNDDOWN</td><td><code>=ROUND(1859.2857,2)</code><br><code>=ROUNDUP(1859.2857,0)</code><br><code>=ROUNDDOWN(1859.2857,-2)</code></td><td>1,859.29<br>1,860<br>1,800</td></tr>
+  <tr><td>ABS / SIGN</td><td><code>=ABS(-10)</code> · <code>=SIGN(-10)</code></td><td>10 · -1</td></tr></table></div>
+  <div class="ex"><h4>SUMIFS step by step</h4>
+    <p>Which rows are East <u>and</u> Paid? Only the two highlighted: 4,000 + 1,125 = <b>5,125</b>. The East Monitor (1,320) is excluded because it was Cancelled.</p>
+    <div class="grid" data-g="sumifs"></div></div>
+  <h3>Date &amp; time functions</h3>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Formula</th><th>Result</th></tr>
+  <tr><td>TODAY / NOW</td><td><code>=TODAY()</code> · <code>=NOW()</code></td><td>Current date (updates daily) · date and time (updates constantly)</td></tr>
+  <tr><td>DATE / TIME</td><td><code>=DATE(2024,3,15)</code> · <code>=TIME(14,30,0)</code></td><td>15-Mar-2024 · 2:30 PM</td></tr>
+  <tr><td>YEAR / MONTH / DAY</td><td><code>=YEAR(A1)</code> with A1 = 15-Mar-2024</td><td>2024 (MONTH → 3, DAY → 15)</td></tr>
+  <tr><td>WEEKDAY / WEEKNUM</td><td><code>=WEEKDAY(DATE(2024,3,15))</code></td><td>6 (Friday; 1 = Sunday, 7 = Saturday)</td></tr>
+  <tr><td>EDATE / EOMONTH</td><td><code>=EDATE(DATE(2024,1,15),3)</code><br><code>=EOMONTH(DATE(2024,2,15),0)</code></td><td>15-Apr-2024<br>29-Feb-2024 (leap year)</td></tr>
+  <tr><td>DATEDIF (undocumented but useful)</td><td><code>=DATEDIF(DATE(2024,1,15),DATE(2024,10,15),"M")</code></td><td>9 months ("D" = days, "Y" = years)</td></tr>
+  <tr><td>NETWORKDAYS / WORKDAY</td><td><code>=NETWORKDAYS(DATE(2024,1,1),DATE(2024,1,12))</code><br><code>=WORKDAY(A1,20)</code></td><td>10 working days<br>date 20 working days after A1</td></tr></table></div>
+  <h3>Information functions</h3>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Formula</th><th>Result</th></tr>
+  <tr><td>ISBLANK / ISNUMBER / ISTEXT</td><td><code>=ISNUMBER(C2)</code> · <code>=ISTEXT(A2)</code></td><td>TRUE · TRUE (on the sample data)</td></tr>
+  <tr><td>ISERROR / ISERR / ISNA</td><td><code>=ISERROR(1/0)</code> · <code>=ISNA(A1)</code></td><td>TRUE · TRUE only for #N/A</td></tr>
+  <tr><td>CELL / TYPE</td><td><code>=CELL("address",A1)</code> · <code>=TYPE(A1)</code></td><td>$A$1 · 1 number, 2 text, 16 error</td></tr></table></div>
+</section>
+
+<!-- 10 -->
+<section class="card" id="s10">
+  <h2><span class="num">10</span>Lookup Functions</h2>
+  <p>Find and retrieve data from tables. All examples use this small price list:</p>
+  <div class="grid" data-g="look"></div>
+  <div class="ex"><h4>Find the price of a Monitor four ways</h4>
+    <div class="fx"><i>fx</i><code>=VLOOKUP("Monitor", B2:C5, 2, FALSE)</code></div>
+    <div class="fx"><i>fx</i><code>=XLOOKUP("Monitor", B2:B5, C2:C5)</code></div>
+    <div class="fx"><i>fx</i><code>=INDEX(C2:C5, MATCH("Monitor", B2:B5, 0))</code></div>
+    <p class="res">All return <b>220</b>. MATCH finds Monitor at position <b>3</b>; INDEX returns the 3rd value in C2:C5.</p></div>
+  <div class="ex"><h4>Looking LEFT: get the product code</h4>
+    <div class="fx"><i>fx</i><code>=XLOOKUP("Monitor", B2:B5, A2:A5)</code></div>
+    <div class="fx"><i>fx</i><code>=INDEX(A2:A5, MATCH("Monitor", B2:B5, 0))</code></div>
+    <p class="res">Both return <b>P03</b>. VLOOKUP cannot do this because the code column is to the <i>left</i> of the lookup column.</p>
+    <div class="fx"><i>fx</i><code>=XLOOKUP("Tablet", B2:B5, C2:C5, "Not Found")</code></div>
+    <p class="res">Returns <b>Not Found</b> instead of #N/A.</p></div>
+  <h3>Function reference</h3>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Purpose &amp; syntax</th><th>Notes</th></tr>
+  <tr><td><b>VLOOKUP()</b></td><td>Searches the first column, returns a value from a chosen column<br><code>VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</code></td><td>Can only look RIGHT. Use FALSE for exact match.</td></tr>
+  <tr><td><b>HLOOKUP()</b></td><td>Same, but searches the first <i>row</i><br><code>=HLOOKUP(A1, DataRange, 3, FALSE)</code></td><td>For horizontal tables</td></tr>
+  <tr><td><b>XLOOKUP()</b> (365)</td><td><code>=XLOOKUP(A2, IDs, Names, "Not Found", 0, 1)</code></td><td>Looks left or right, custom not-found text, can return several columns (<code>XLOOKUP(A2,IDs,B:D)</code>)</td></tr>
+  <tr><td><b>INDEX()</b></td><td>Value at a row/column position<br><code>=INDEX(A1:C5, 4, 2)</code> → Monitor</td><td>Row 4, column 2 of the range</td></tr>
+  <tr><td><b>MATCH()</b></td><td>Position of a value<br><code>=MATCH("Monitor", B2:B5, 0)</code> → 3</td><td>0 = exact match</td></tr>
+  <tr><td><b>XMATCH()</b> (365)</td><td><code>=XMATCH("Monitor", B2:B5, 0)</code> → 3</td><td>More match and search options</td></tr>
+  <tr><td><b>CHOOSE()</b></td><td><code>=CHOOSE(2,"Red","Blue","Green")</code> → Blue</td><td>Pick from a fixed list by number</td></tr></table></div>
+  <div class="note"><b>Why INDEX-MATCH beats VLOOKUP:</b> ✅ looks left or right · ✅ faster on large data · ✅ doesn't break when columns are inserted or deleted · ✅ more flexible.</div>
+  <div class="ex"><h4>INDEX-MATCH for a 2D lookup: West sales in Feb</h4>
+    <div class="grid" data-g="matrix"></div>
+    <div class="fx"><i>fx</i><code>=INDEX(B2:D5, MATCH("West",A2:A5,0), MATCH("Feb",B1:D1,0))</code></div>
+    <p class="res">MATCH("West") → row <b>2</b> of the body, MATCH("Feb") → column <b>2</b>, so INDEX returns <b>5,600</b>.</p></div>
+  <h3>Lookup comparison</h3>
+  <div class="tw"><table class="t"><tr><th>Function</th><th>Direction</th><th>Flexibility</th><th>Best use</th></tr>
+  <tr><td><b>VLOOKUP</b></td><td>Right only</td><td>Limited</td><td>Simple lookups, legacy files</td></tr>
+  <tr><td><b>HLOOKUP</b></td><td>Down only</td><td>Limited</td><td>Horizontal tables</td></tr>
+  <tr><td><b>INDEX-MATCH</b></td><td>Any direction</td><td>High</td><td>Complex lookups, large data</td></tr>
+  <tr><td><b>XLOOKUP</b></td><td>Any direction</td><td>Very high</td><td>Modern Excel, all scenarios</td></tr></table></div>
+</section>
+
+<!-- 11 -->
+<section class="card" id="s11">
+  <h2><span class="num">11</span>Conditional Formatting</h2>
+  <p>Automatically changes cell appearance (color, font, borders) based on values or formulas, to reveal patterns at a glance.</p>
+  <div class="ex"><h4>Four rule types applied to the same Total column</h4>
+    <div class="grid" data-g="cf"></div>
+    <p class="res"><b>Highlight rule</b> (Total &gt; 2,000, green) · <b>Data Bars</b> (bar length ∝ value) · <b>3-Color Scale</b> (red → yellow → green) · <b>Icon Set</b> (status traffic lights).</p></div>
+  <div class="ex"><h4>Custom formula: highlight the whole row when Status = “Pending”</h4>
+    <div class="fx"><i>fx</i><code>=$E2="Pending"</code></div>
+    <p class="res">Applies to A2:F11. The <code>$</code> locks the column so every cell in the row checks column E.</p>
+    <div class="grid" data-g="rowhl"></div></div>
+  <h3>Types of Conditional Formatting</h3>
+  <div class="tw"><table class="t"><tr><th>Type</th><th>Description</th></tr>
+  <tr><td><b>Highlight Cell Rules</b></td><td>Greater/Less Than, Between, Equal To, Text Contains, Date Occurring, Duplicate Values. E.g. highlight all sales &gt; $10,000 in green.</td></tr>
+  <tr><td><b>Top/Bottom Rules</b></td><td>Top/Bottom 10 items, Top/Bottom 10%, Above/Below Average.</td></tr>
+  <tr><td><b>Data Bars</b></td><td>Bars inside cells proportional to values: bar charts in cells. Customize color, direction and whether to show the number.</td></tr>
+  <tr><td><b>Color Scales</b></td><td>2-color (red→green) or 3-color (red-yellow-green) gradients.</td></tr>
+  <tr><td><b>Icon Sets</b></td><td>Arrows, traffic lights, ratings (stars, flags), indicators: perfect for KPI status dashboards.</td></tr>
+  <tr><td><b>Custom Formula Rules</b></td><td>Complex rules with formulas, e.g.<br><code>=$E1="Completed"</code> (highlight row)<br><code>=WEEKDAY(A1,2)&gt;5</code> (highlight weekends)<br><code>=COUNTIF($A:$A,$A1)&gt;1</code> (highlight duplicates)</td></tr></table></div>
+  <div class="warn">Absolute references: <code>$A1</code> locks the column, <code>A$1</code> locks the row, <code>$A$1</code> locks both.</div>
+  <h3>Managing rules</h3>
+  <ol><li>Select cells → Home → Conditional Formatting.</li><li>Choose a rule type or “New Rule”.</li><li>Set conditions and formatting.</li><li>“Manage Rules” edits, deletes or reorders; “Clear Rules” removes formatting.</li></ol>
+  <div class="note"><b>Rule priority:</b> when several rules apply, the first rule in the list wins. Reorder in Manage Rules; tick “Stop If True” to block lower rules.</div>
+  <h3>Practical ideas</h3>
+  <div class="cards">
+    <div><b>📊 Sales dashboard</b>Green for targets met (&gt;100%), red below, data bars for comparison.</div>
+    <div><b>📅 Project timeline</b>Yellow when due within 7 days, red when overdue, traffic lights for status.</div>
+    <div><b>💰 Budget tracking</b>Color scale green (under budget) → red (over), icons for variance.</div>
+    <div><b>📈 Performance review</b>Top 10% green, bottom 10% red, stars for ratings.</div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="card" id="s12">
+  <h2><span class="num">12</span>Sort and Filter</h2>
+  <h3>Sorting data</h3>
+  <div class="ex"><h4>Multi-level sort: Region (A→Z), then Total (largest first)</h4>
+    <div class="grid" data-g="sort2"></div>
+    <p class="res">Data → Sort → Add Level. Level 1: Region, A to Z. Level 2: Total, Largest to Smallest. Within each region the biggest sale comes first.</p></div>
+  <div class="tw"><table class="t"><tr><th>Sort type</th><th>How</th></tr>
+  <tr><td><b>Simple sort</b></td><td>Click a cell in the column → Data → Sort A to Z / Z to A. Excel expands the selection to the whole table automatically.</td></tr>
+  <tr><td><b>Multi-level sort</b></td><td>Data → Sort, then add a level for each criterion.</td></tr>
+  <tr><td><b>Custom sort</b></td><td>Sort dialog → Order → Custom List (e.g. High, Medium, Low or Q1–Q4). Create lists in File → Options → Advanced → Edit Custom Lists.</td></tr>
+  <tr><td><b>Sort by color</b></td><td>Sort dialog → Sort On → Cell Color / Font Color. Useful with manual or conditional colors.</td></tr></table></div>
+  <h3>Filtering data</h3>
+  <div class="ex"><h4>AutoFilter: Region = West AND Status = Paid</h4>
+    <div class="grid" data-g="filt"></div>
+    <p class="res">Blue row numbers show that rows are filtered (rows 2 and 4–10 are hidden, not deleted). Each column's filter combines with <b>AND</b> logic.</p></div>
+  <div class="tw"><table class="t"><tr><th>Filter type</th><th>How</th></tr>
+  <tr><td><b>AutoFilter</b></td><td>Data → Filter (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd>), then use header dropdowns: tick values, Text Filters (Contains, Begins With...), Number Filters (Greater Than, Between...), Date Filters (Today, This Week...).</td></tr>
+  <tr><td><b>Advanced Filter</b></td><td>Make a criteria range, then Data → Advanced. Criteria on the same row = AND, on different rows = OR. E.g. East &gt;5000 <i>or</i> West &gt;3000. Can copy results elsewhere.</td></tr>
+  <tr><td><b>Filter by selection</b></td><td>Right-click a cell → Filter → Filter by Selected Cell's Value.</td></tr>
+  <tr><td><b>Slicer</b> (for Tables)</td><td>Ctrl+T to make a Table → Table Design → Insert Slicer. Visual filter buttons; <kbd>Ctrl</kbd>/<kbd>Shift</kbd> for multi-select.</td></tr></table></div>
+  <h3>Clearing sorts and filters</h3>
+  <div class="cards">
+    <div><b>Clear Filters</b>Data → Clear (keeps the dropdowns).</div>
+    <div><b>Remove Filter</b>Data → Filter toggles off the dropdown arrows.</div>
+    <div><b>Reapply</b>Data → Reapply after the data changes.</div>
+  </div>
+  <div class="warn">Filtering hides rows but doesn't delete them. Before copying filtered data use Go To Special → Visible Cells Only (<kbd>Alt</kbd>+<kbd>;</kbd>) or Paste Special → Values.</div>
+</section>
+
+<!-- 13 -->
+<section class="card" id="s13">
+  <h2><span class="num">13</span>Pivot Tables &amp; Pivot Charts</h2>
+  <p>A Pivot Table is Excel's most powerful analysis tool: it summarizes large data by grouping, calculating and organizing it without writing formulas.</p>
+  <h3>Creating a Pivot Table</h3>
+  <ol><li>Click anywhere in your data (Excel detects the range).</li><li>Insert → PivotTable.</li><li>Place it on a New Worksheet (recommended) → OK.</li><li>Drag fields into the PivotTable Fields pane areas.</li></ol>
+  <div class="ex"><h4>Total sales by Region and Month</h4>
+    <div class="flex">
+      <div class="pv">
+        <div><b>Filters</b>(none)</div>
+        <div><b>Columns</b><span class="chip o">Month</span></div>
+        <div><b>Rows</b><span class="chip">Region</span></div>
+        <div><b>Values</b><span class="chip y">Sum of Total</span></div>
+      </div>
+      <span class="arrow">→</span>
+      <div class="grid" data-g="pivot"></div>
+    </div>
+    <p class="res">Drag <b>Region</b> to Rows, <b>Month</b> to Columns, <b>Total</b> to Values. Excel builds the whole cross-tab (21,695 grand total matches the sample dataset).</p></div>
+  <h3>Field areas</h3>
+  <div class="cards">
+    <div><b>Filters</b>Report filters at the top; filter the whole pivot (like a slicer).</div>
+    <div><b>Columns</b>Fields here become column headers.</div>
+    <div><b>Rows</b>Fields here become row headers.</div>
+    <div><b>Values</b>The calculations. Numbers are summed and text is counted by default; switch to Average, Max, Min, Count...</div>
+  </div>
+  <h3>Common operations</h3>
+  <div class="tw"><table class="t"><tr><th>Operation</th><th>How / options</th></tr>
+  <tr><td><b>Change calculation</b></td><td>Click the value field → Value Field Settings: Sum, Count, Average, Max, Min, Product, Count Numbers, StdDev, Var.</td></tr>
+  <tr><td><b>Show Values As</b></td><td>% of Grand Total, % of Column/Row Total, % Difference From, Running Total, Rank.</td></tr>
+  <tr><td><b>Group data</b></td><td>Right-click dates → Group → Months, Quarters, Years. Right-click numbers → Group into ranges (0–100, 101–200...). Select items → Group Selection for manual groups.</td></tr>
+  <tr><td><b>Calculated Fields</b></td><td>PivotTable Analyze → Fields, Items &amp; Sets → Calculated Field, e.g. <code>Profit Margin = Sales / Cost - 1</code>.</td></tr>
+  <tr><td><b>Slicers &amp; Timelines</b></td><td>PivotTable Analyze → Insert Slicer / Insert Timeline (for dates).</td></tr>
+  <tr><td><b>Refresh</b></td><td>Right-click → Refresh, or Refresh All for every pivot in the workbook.</td></tr></table></div>
+  <div class="ex"><h4>“Show Values As → % of Grand Total”</h4>
+    <div class="tw"><table class="t"><tr><th>Region</th><th>Sum of Total</th><th>% of Grand Total</th></tr>
+    <tr><td>East</td><td>6,445</td><td>29.7%</td></tr><tr><td>North</td><td>2,660</td><td>12.3%</td></tr>
+    <tr><td>South</td><td>5,040</td><td>23.2%</td></tr><tr><td>West</td><td>7,550</td><td>34.8%</td></tr>
+    <tr><td><b>Grand Total</b></td><td><b>21,695</b></td><td><b>100.0%</b></td></tr></table></div></div>
+  <h3>Pivot Charts</h3>
+  <p>A visual version of the pivot that updates as you change the pivot. Click in the pivot → Insert → PivotChart → choose Column, Line, Pie... Hide the on-chart field buttons via PivotChart Analyze → Field Buttons → Hide All for clean presentations.</p>
+  <h3>Best practices</h3>
+  <div class="cards">
+    <div><b>✅ Clean source data</b>No blank rows/columns, consistent headers, no merged cells, correct data types.</div>
+    <div><b>✅ Use Tables</b>Ctrl+T on the source so the pivot grows with your data.</div>
+    <div><b>✅ Name fields clearly</b>Header names become pivot field names.</div>
+    <div><b>✅ Keep it simple</b>Start simple, add complexity gradually.</div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="card" id="s14">
+  <h2><span class="num">14</span>Data Consolidation</h2>
+  <p>Combines data from several ranges, worksheets or workbooks into one summary, e.g. monthly sales from different regions.</p>
+  <div class="ex"><h4>Consolidate Units by product from 3 regional sheets (function: Sum)</h4>
+    <div class="flex">
+      <div class="grid" data-g="c_east"></div><div class="grid" data-g="c_west"></div><div class="grid" data-g="c_south"></div>
+      <span class="arrow">→</span>
+      <div class="grid" data-g="c_sum"></div>
+    </div>
+    <p class="res">Laptop 5 + 7 + 3 = <b>15</b> · Mouse 20 + 40 + 15 = <b>75</b> · Monitor 6 + 4 + 12 = <b>22</b></p></div>
+  <h3>Steps</h3>
+  <ol><li>Create a “Summary” sheet.</li><li>Data → Consolidate; function: Sum.</li><li>Add references: <code>East!A1:B4</code>, <code>West!A1:B4</code>, <code>South!A1:B4</code>.</li><li>Tick “Top row” and “Left column” (to match by labels).</li><li>Tick “Create links to source data” for dynamic updates.</li><li>OK.</li></ol>
+  <h3>Methods</h3>
+  <div class="tw"><table class="t"><tr><th>Method</th><th>How it works</th><th>Best for</th></tr>
+  <tr><td><b>By position</b></td><td>Combines the same cell positions across sheets</td><td>Identical layouts</td></tr>
+  <tr><td><b>By category</b></td><td>Matches row/column labels</td><td>Different layouts but the same category names</td></tr>
+  <tr><td><b>Create links</b></td><td>Builds an outline with expandable source detail; updates automatically</td><td>Dynamic summaries</td></tr></table></div>
+  <p><b>Functions available:</b> Sum (most common), Count, Average, Max/Min, Product, StdDev/Var.</p>
+  <h3>Alternatives</h3>
+  <div class="cards">
+    <div><b>📊 Pivot Tables</b>More flexible for complex analysis and multiple summaries.</div>
+    <div><b>🔗 Power Query</b>Best for large data, different structures and regular refreshes.</div>
+    <div><b>📝 Formulas</b><code>=SUM(East!B2, West!B2, South!B2)</code> or a 3D reference:<br><code>=SUM(East:South!B2)</code></div>
+  </div>
+  <div class="tip">3D reference shortcut: <code>=SUM(Sheet1:Sheet5!B2)</code> adds B2 from every sheet between Sheet1 and Sheet5 (including them).</div>
+</section>
+
+<!-- 15 -->
+<section class="card" id="s15">
+  <h2><span class="num">15</span>Data Validation</h2>
+  <p>Controls what users can enter in a cell: restrict input to specific values, ranges or formats, like rules for data entry.</p>
+  <div class="ex"><h4>List (dropdown) with input message</h4>
+    <div class="dd"><div class="cell"><span>West</span><span>▼</span></div>
+      <ul><li>East</li><li class="s">West</li><li>North</li><li>South</li></ul></div>
+    <div class="msgbox"><h5>Select Region</h5><div>Choose from East, West, North, or South</div></div>
+    <p class="res">Data → Data Validation → Allow: List → Source: <code>East,West,North,South</code> or a range like <code>=$A$1:$A$10</code>.</p></div>
+  <div class="ex"><h4>Error alert when invalid data is typed (Stop style)</h4>
+    <div class="msgbox"><h5>🛑 Invalid entry</h5><div>The value you entered is not valid. Age must be a whole number between 18 and 65.<br><br><kbd>Retry</kbd> <kbd>Cancel</kbd></div></div>
+    <p class="res">Rule used: Whole Number → between 18 and 65. Warning (⚠️) and Information (ℹ️) styles show a message but still allow the entry.</p></div>
+  <h3>Types of validation</h3>
+  <div class="tw"><table class="t"><tr><th>Type</th><th>Use</th><th>Example</th></tr>
+  <tr><td><b>List</b></td><td>Dropdown menu</td><td><code>Red,Blue,Green,Yellow</code></td></tr>
+  <tr><td><b>Whole Number</b></td><td>Integers in a range</td><td>Ages between 18 and 65</td></tr>
+  <tr><td><b>Decimal</b></td><td>Decimals with limits</td><td>Price between 0 and 999.99</td></tr>
+  <tr><td><b>Date</b></td><td>Date ranges</td><td>Future only: &gt; <code>=TODAY()</code><br>Within 30 days: between <code>=TODAY()</code> and <code>=TODAY()+30</code></td></tr>
+  <tr><td><b>Time</b></td><td>Time entries</td><td>Business hours: between 9:00 AM and 5:00 PM</td></tr>
+  <tr><td><b>Text Length</b></td><td>Number of characters</td><td>Zip code = exactly 5; username 6–20</td></tr>
+  <tr><td><b>Custom</b></td><td>Formula rules</td><td>Email: <code>=ISNUMBER(FIND("@",A1))</code><br>No duplicates: <code>=COUNTIF($A$1:$A$100,A1)=1</code><br>Uppercase only: <code>=EXACT(A1,UPPER(A1))</code><br>Start before end: <code>=A1&lt;B1</code></td></tr></table></div>
+  <h3>Dependent dropdowns</h3>
+  <div class="ex"><h4>Product list changes with the selected Region</h4>
+    <div class="dd"><small>Region</small><div class="cell"><span>East</span><span>▼</span></div></div>
+    <span class="arrow">→</span>
+    <div class="dd"><small>Product</small><div class="cell"><span>Apple</span><span>▼</span></div><ul><li class="s">Apple</li><li>Banana</li><li>Orange</li></ul></div>
+    <ol><li>Create named ranges: <code>East_Products</code> = Apple, Banana, Orange · <code>West_Products</code> = Grape, Mango, Kiwi.</li>
+    <li>First dropdown (Region), source: <code>East,West</code>.</li>
+    <li>Second dropdown (Product), source: <code>=INDIRECT(A1&amp;"_Products")</code>.</li></ol>
+    <p class="res">Choose West and the Product list becomes Grape, Mango, Kiwi.</p></div>
+  <p><b>Dynamic list with UNIQUE:</b> <code>=UNIQUE(FILTER(A:A, A:A&lt;&gt;""))</code> in a helper cell, then use <code>=H2#</code> (the spill reference) as the dropdown source so it updates as data grows.</p>
+  <h3>Messages &amp; management</h3>
+  <div class="cards">
+    <div><b>Input Message</b>Appears when the cell is selected; guides the user.</div>
+    <div><b>Error Alert</b>Stop (blocks), Warning or Information (allow).</div>
+    <div><b>Copy validation</b>Copy → Paste Special → Validation.</div>
+    <div><b>Find validated cells</b>Home → Find &amp; Select → Data Validation.</div>
+    <div><b>Circle Invalid Data</b>Data → Data Validation → Circle Invalid Data.</div>
+    <div><b>Remove</b>Data Validation → Clear All.</div>
+  </div>
+  <div class="warn">Validation checks only <i>manual typing</i>. A formula result, or pasted data, can still break the rules. Use Circle Invalid Data to audit.</div>
+</section>
+
+<!-- 16 -->
+<section class="card" id="s16">
+  <h2><span class="num">16</span>Power Query Editor</h2>
+  <p>Power Query connects to data sources, cleans and transforms data, and loads it into Excel, with no complex formulas. Every change is recorded as a step you can replay with one click when the source updates.</p>
+  <p><b>Open it:</b> Data tab → Get Data. Sources include files (Excel, CSV, Text, XML, JSON, PDF), databases (SQL Server, Access, Oracle), Azure, online services (SharePoint, Web), the current table/range, and other sources (OData, Web API, Blank Query).</p>
+  <h3>The interface</h3>
+  <div class="cards">
+    <div><b>Ribbon</b>Home, Transform, Add Column, View tabs.</div>
+    <div><b>Queries pane (left)</b>All queries; right-click to Duplicate, Reference, Delete.</div>
+    <div><b>Data preview (center)</b>Sample of your data (top 1,000 rows).</div>
+    <div><b>Query Settings (right)</b>Name and <b>Applied Steps</b>, which can be edited, deleted or reordered.</div>
+    <div><b>Formula bar</b>Shows the M code for each step.</div>
+  </div>
+  <div class="ex"><h4>Applied Steps: a typical cleanup recipe</h4>
+<pre><code>Source
+Promoted Headers
+Changed Type
+Removed Columns
+Filtered Rows
+Replaced Value  (N/A → 0)
+Unpivoted Columns</code></pre>
+    <p class="res">Click any step to see the data at that point. Refresh All re-runs the whole recipe on new data.</p></div>
+  <h3>Essential transformations</h3>
+  <div class="ex"><h4>Unpivot Columns: wide → long</h4>
+    <div class="flex"><div class="grid" data-g="unp_b"></div><span class="arrow">→</span><div class="grid" data-g="unp_a"></div></div>
+    <p class="res">Select Jan, Feb, Mar → Transform → Unpivot Columns (then rename Attribute → Month, Value → Sales). Long format is ideal for Pivot Tables. <b>Pivot Column</b> is the reverse.</p></div>
+  <div class="ex"><h4>Split Column by delimiter “, ”</h4>
+    <div class="flex"><div class="grid" data-g="spl_b"></div><span class="arrow">→</span><div class="grid" data-g="spl_a"></div></div></div>
+  <div class="tw"><table class="t"><tr><th>Transformation</th><th>How</th></tr>
+  <tr><td><b>Remove Columns</b></td><td>Right-click → Remove, or “Remove Other Columns” to keep only the selection.</td></tr>
+  <tr><td><b>Filter Rows</b></td><td>Header dropdown: tick values, Text/Number/Date filters.</td></tr>
+  <tr><td><b>Remove Duplicates</b></td><td>Home → Remove Rows → Remove Duplicates (first occurrence kept).</td></tr>
+  <tr><td><b>Change Data Type</b></td><td>Click the type icon in the header (Text, Whole Number, Decimal, Date, Date/Time, True/False, Currency, Percentage). Always set correct types.</td></tr>
+  <tr><td><b>Replace Values</b></td><td>Right-click → Replace Values, e.g. "N/A" → 0.</td></tr>
+  <tr><td><b>Merge Columns</b></td><td>Select columns → Transform → Merge Columns (separator Space): John + Smith → John Smith.</td></tr>
+  <tr><td><b>Extract Text</b></td><td>Transform → Extract: First/Last Characters, Range, Text Before/After Delimiter.</td></tr>
+  <tr><td><b>Fill Down / Up</b></td><td>Right-click → Fill; fixes blanks left by merged cells.</td></tr>
+  <tr><td><b>Group By</b></td><td>Home → Group By: Group by Region, Operation Sum, Column Sales Amount, like a mini Pivot Table.</td></tr>
+  <tr><td><b>Custom Column</b></td><td>Add Column → Custom Column, e.g. <code>[First Name] &amp; " " &amp; [Last Name]</code> or <code>[Quantity] * [Price]</code>.</td></tr>
+  <tr><td><b>Conditional Column</b></td><td>Add Column → Conditional Column: if [Sales] &gt; 10000 then "High", else if &gt; 5000 then "Medium", else "Low". No coding.</td></tr></table></div>
+  <h3>Combining queries</h3>
+  <p><b>Append Queries</b> stacks tables vertically (same columns, different rows, such as monthly reports): Home → Append Queries. <b>Merge Queries</b> joins tables horizontally (like VLOOKUP): Home → Merge Queries, then pick the matching columns.</p>
+  <div class="ex"><h4>Join types: Table A has IDs {1, 2, 3}, Table B has IDs {2, 3, 4}</h4>
+  <div class="tw"><table class="t"><tr><th>Join type</th><th>Keeps</th><th>Result IDs</th></tr>
+  <tr><td><b>Left Outer</b></td><td>All from first table, matches from second</td><td>1, 2, 3</td></tr>
+  <tr><td><b>Right Outer</b></td><td>All from second table, matches from first</td><td>2, 3, 4</td></tr>
+  <tr><td><b>Full Outer</b></td><td>All records from both</td><td>1, 2, 3, 4</td></tr>
+  <tr><td><b>Inner</b></td><td>Only matching records</td><td>2, 3</td></tr>
+  <tr><td><b>Left Anti</b></td><td>First-table records NOT in second</td><td>1</td></tr>
+  <tr><td><b>Right Anti</b></td><td>Second-table records NOT in first</td><td>4</td></tr></table></div></div>
+  <h3>Best practices</h3>
+  <div class="cards">
+    <div><b>📝 Name your steps</b>Right-click → Rename, e.g. “Removed Empty Columns”.</div>
+    <div><b>🔄 Refresh</b>Data → Refresh All updates every query.</div>
+    <div><b>📊 Load settings</b>Home → Close &amp; Load To → Table, PivotTable or Connection Only.</div>
+    <div><b>⚡ Query folding</b>Let the database do the work; folded steps run faster.</div>
+    <div><b>🎯 Reference vs Duplicate</b>Reference points to the original (changes flow through); Duplicate is independent.</div>
+    <div><b>📋 Document</b>Add descriptions in Properties for your team.</div>
+  </div>
+  <div class="tip">Power Query is <b>non-destructive</b>. Steps can be edited or deleted anytime without touching the source data.</div>
+</section>
+
+<!-- 17 -->
+<section class="card" id="s17">
+  <h2><span class="num">17</span>Excel Dashboards</h2>
+  <p>A dashboard shows the most important information on one screen so it can be monitored at a glance, combining charts, tables, KPIs and interactive controls. Here is a mock dashboard built from the sample dataset:</p>
+  <div class="dash">
+    <div class="dtitle">Sales Dashboard · Q1 2024 <span>Slicers: <em>Region: All</em><em>Status: All</em></span></div>
+    <div class="kpis">
+      <div class="kpi"><small>Total Sales</small><strong>$21,695</strong><em>▲ across 10 orders</em></div>
+      <div class="kpi"><small>Paid Orders</small><strong>7</strong><em>▲ $13,015 collected</em></div>
+      <div class="kpi y"><small>Pending</small><strong>$7,360</strong><em>● 2 orders to follow up</em></div>
+      <div class="kpi r"><small>Cancelled</small><strong>$1,320</strong><em>▼ 1 order</em></div>
+    </div>
+    <div class="charts">
+      <div class="chart"><h5>Sales by Region</h5>
+        <div class="hb"><span>West</span><i style="width:100%"></i><span>7,550</span></div>
+        <div class="hb"><span>East</span><i style="width:85%"></i><span>6,445</span></div>
+        <div class="hb"><span>South</span><i style="width:67%"></i><span>5,040</span></div>
+        <div class="hb"><span>North</span><i style="width:35%"></i><span>2,660</span></div></div>
+      <div class="chart"><h5>Sales by Month</h5>
+        <svg viewBox="0 0 300 130" width="100%" role="img" aria-label="Line chart of monthly sales">
+          <line x1="20" y1="110" x2="290" y2="110" stroke="#ccc"/>
+          <polyline fill="none" stroke="#217346" stroke-width="3" points="40,30 150,17 260,86"/>
+          <g fill="#217346"><circle cx="40" cy="30" r="4"/><circle cx="150" cy="17" r="4"/><circle cx="260" cy="86" r="4"/></g>
+          <g font-size="11" text-anchor="middle" fill="#444"><text x="40" y="124">Jan</text><text x="150" y="124">Feb</text><text x="260" y="124">Mar*</text>
+          <text x="40" y="22">8,760</text><text x="150" y="9">10,265</text><text x="260" y="78">2,670</text></g></svg>
+        <small>*March has only 2 orders in the sample.</small></div>
+      <div class="chart"><h5>Share by Product</h5><div class="donut"></div>
+        <div class="lg"><span style="background:#217346"></span>Laptop 55%<span style="background:#2b7bd6"></span>Monitor 26%<br><span style="background:#e0a100;margin-left:0"></span>Keyboard 11%<span style="background:#c0c8c3"></span>Mouse 7%</div></div>
+    </div>
+  </div>
+  <h3>Key components</h3>
+  <div class="cards">
+    <div><b>📊 Charts &amp; graphs</b>Trends, comparisons, distributions.</div>
+    <div><b>📈 KPIs</b>Single-value metrics vs targets.</div>
+    <div><b>📋 Tables</b>Detail supporting the visuals.</div>
+    <div><b>🎚️ Slicers &amp; controls</b>Interactive filters.</div>
+    <div><b>📐 Sparklines</b>Mini charts inside cells.</div>
+    <div><b>🎨 Formatting</b>Color, fonts, borders that create hierarchy.</div>
+  </div>
+  <h3>Building a dashboard: step by step</h3>
+  <ol>
+    <li><b>Define purpose &amp; audience:</b> what decisions will it support, who uses it, what questions must it answer?</li>
+    <li><b>Gather &amp; prepare data:</b> collect → clean with Power Query → structure in Tables → build Pivot Tables/calculations.</li>
+    <li><b>Design layout:</b> sketch on paper, plan a grid, most important info top-left.</li>
+    <li><b>Create the data structure:</b> a Data sheet (raw, can be hidden), a Calculations sheet (formulas, pivots) and a Dashboard sheet (visuals only).</li>
+    <li><b>Build visualizations:</b> create and format charts; remove clutter (gridlines, extra labels).</li>
+    <li><b>Add interactivity:</b> Slicers, Timelines, Form Controls.</li>
+    <li><b>Apply professional formatting:</b> consistent colors, clear labels, white space, alignment; hide worksheet gridlines.</li>
+    <li><b>Test &amp; refine:</b> test every control, get feedback, simplify.</li>
+  </ol>
+  <h3>Best practices</h3>
+  <div class="cards">
+    <div><b>⏱ The 5-second rule</b>The main message should be clear within 5 seconds.</div>
+    <div><b>✂ Less is more</b>5–7 key visuals maximum.</div>
+    <div><b>🎨 Consistent design</b>2–3 colors plus white/gray, same chart type for similar metrics, 1–2 fonts, uniform sizing.</div>
+    <div><b>🔝 Clear hierarchy</b>Most important metrics largest, top-left.</div>
+  </div>
+  <div class="tw"><table class="t"><tr><th>Color</th><th>Meaning</th></tr>
+  <tr><td style="color:#1b7a3d"><b>Green</b></td><td>Positive, on target, good</td></tr>
+  <tr><td style="color:#c22"><b>Red</b></td><td>Negative, below target, warning</td></tr>
+  <tr><td style="color:#a06c00"><b>Yellow / Orange</b></td><td>Caution, needs attention</td></tr>
+  <tr><td style="color:#2b7bd6"><b>Blue / Gray</b></td><td>Neutral information</td></tr></table></div>
+  <p>Never use color as the <i>only</i> indicator (accessibility): add icons, arrows or text.</p>
+  <h3>Choosing the right chart</h3>
+  <div class="tw"><table class="t"><tr><th>Chart</th><th>Use for</th></tr>
+  <tr><td><b>Column / Bar</b></td><td>Compare values across categories</td></tr>
+  <tr><td><b>Line</b></td><td>Trends over time</td></tr>
+  <tr><td><b>Pie / Donut</b></td><td>Parts of a whole (5 slices max)</td></tr>
+  <tr><td><b>Scatter</b></td><td>Relationships between variables</td></tr>
+  <tr><td><b>Gauge</b></td><td>Progress toward a goal</td></tr>
+  <tr><td><b>Heat map</b></td><td>Color-coded data density</td></tr></table></div>
+  <h3>Essential techniques</h3>
+  <div class="ex"><h4>Dynamic chart title</h4>
+    <div class="fx"><i>fx</i><code>="Sales for " &amp; A1</code></div>
+    <p class="res">Put this in a cell (say B1), then click the chart title, type <code>=Sheet1!$B$1</code> in the formula bar. With A1 = “West”, the title reads <b>Sales for West</b>.</p></div>
+  <div class="tw"><table class="t"><tr><th>Technique</th><th>How</th></tr>
+  <tr><td><b>KPI cards</b></td><td>Large font (36–72pt), include a comparison (vs last month/target), icon or color for status, optional sparkline.</td></tr>
+  <tr><td><b>Slicers</b></td><td>Insert → Slicer; connect to several Pivot Tables via Report Connections; style consistently.</td></tr>
+  <tr><td><b>Camera tool</b></td><td>Add to Quick Access Toolbar (File → Options → Quick Access → Camera) for live linked pictures of ranges/charts.</td></tr>
+  <tr><td><b>Remove clutter</b></td><td>Remove gridlines and chart borders, simplify axes, drop obvious legends, use data labels, hide worksheet gridlines (View → Gridlines).</td></tr>
+  <tr><td><b>Form controls</b></td><td>Developer tab → Insert → Form Controls (buttons, checkboxes, scrollbars).</td></tr>
+  <tr><td><b>Combo charts</b></td><td>Column + line to show metrics with different scales.</td></tr>
+  <tr><td><b>Refresh button</b></td><td>Insert a shape → assign a macro that refreshes all.</td></tr>
+  <tr><td><b>Named ranges</b></td><td>Readable formulas and flexible chart sources.</td></tr></table></div>
+  <h3>Layout tips</h3>
+  <div class="cards">
+    <div><b>Grid</b>Divide into a 3×3 or 4×4 grid and align every element to it.</div>
+    <div><b>F-pattern</b>Users scan top-left → across → down the left side. Put key metrics there.</div>
+    <div><b>White space</b>Empty space rests the eyes and improves focus.</div>
+    <div><b>Alignment</b>Use Page Layout → Align tools, with gridlines temporarily on.</div>
+  </div>
+  <div class="tip"><b>Bonus:</b> create a Print Area version at exact page width (usually 95–100% zoom) so it looks good on screen and on paper.</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <b>📊 Microsoft Excel - Complete Professional Guide</b><br>
+  Master data processing, analysis, and visualization. From basics to advanced techniques.
+</footer>
+
+<script>
+(function(){
+/* ---------- sample data ---------- */
+var S_HEAD=['Region','Product','Qty','Total','Status','Month'];
+var S=[['East','Laptop',5,4000,'Paid','Jan'],['West','Mouse',40,600,'Paid','Jan'],['North','Monitor',8,1760,'Pending','Jan'],['South','Laptop',3,2400,'Paid','Jan'],['East','Keyboard',25,1125,'Paid','Feb'],['West','Laptop',7,5600,'Pending','Feb'],['North','Mouse',60,900,'Paid','Feb'],['South','Monitor',12,2640,'Paid','Feb'],['East','Monitor',6,1320,'Cancelled','Mar'],['West','Keyboard',30,1350,'Paid','Mar']];
+
+function fmt(v){ if(v===null||v===undefined) return ''; return typeof v==='number'? v.toLocaleString('en-US') : v; }
+function addr(s){ var m=/^([A-Z])(\d+)$/.exec(s); return [m[1].charCodeAt(0), +m[2]]; }
+function inRange(c,r,rg){ var p=rg.split(':'), a=addr(p[0]), b=addr(p[1]||p[0]);
+  return c>=Math.min(a[0],b[0]) && c<=Math.max(a[0],b[0]) && r>=Math.min(a[1],b[1]) && r<=Math.max(a[1],b[1]); }
+
+function renderGrid(host, sp){
+  var c0=(sp.c0||'A').charCodeAt(0), r0=sp.r0||1;
+  var rows=(sp.head ? [sp.head.map(function(h){return {v:h+(sp.filt?' ▼':''),c:'hd'};})] : []).concat(sp.rows);
+  var ncol=sp.cols||0;
+  rows.forEach(function(r){ var n=0; r.forEach(function(x){ n+=(x&&x.span)||1; }); if(n>ncol) ncol=n; });
+  var h='<table class="xl"><thead><tr><th class="rn"></th>', i;
+  for(i=0;i<ncol;i++) h+='<th>'+String.fromCharCode(c0+i)+'</th>';
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(row,ri){
+    var rn=sp.rn? sp.rn[ri] : r0+ri;
+    var rcls=(sp.rowCls&&sp.rowCls(row,ri))||'';
+    h+='<tr class="'+rcls+'"><th class="rn'+(sp.filt&&ri>0?' fl':'')+'">'+rn+'</th>';
+    var ci=0;
+    row.forEach(function(x){
+      var o=(x!==null&&typeof x==='object')? x : {v:x};
+      var cls=[]; if(o.c) cls.push(o.c);
+      var col=c0+ci;
+      (sp.hi||[]).forEach(function(p){ if(inRange(col,rn,p[0])) cls.push(p[1]); });
+      var sv=(o.v===null||o.v===undefined)?'':String(o.v);
+      if(typeof o.v==='number' || (sv!=='' && /^[-$\d][\d,.%$]*$/.test(sv))) cls.push('r');
+      h+='<td'+(cls.length?' class="'+cls.join(' ')+'"':'')+(o.s?' style="'+o.s+'"':'')+(o.span?' colspan="'+o.span+'"':'')+'>'+fmt(o.v)+'</td>';
+      ci+=o.span||1;
+    });
+    for(;ci<ncol;ci++) h+='<td></td>';
+    h+='</tr>';
+  });
+  h+='</tbody></table>';
+  if(sp.tabs) h+='<div class="tabs">'+sp.tabs.map(function(t,k){ return '<span class="'+(k===(sp.act||0)?'on':'')+'">'+t+'</span>'; }).join('')+'</div>';
+  if(sp.cap) h+='<div class="gcap">'+sp.cap+'</div>';
+  host.innerHTML=h;
+}
+
+/* color helpers for the color-scale demo */
+function mix(a,b,t){ return 'rgb('+a.map(function(x,i){return Math.round(x+(b[i]-x)*t);}).join(',')+')'; }
+function scale(t){ var p=(t-600)/5000, R=[248,105,107], Y=[255,235,132], G=[99,190,123]; return p<.5? mix(R,Y,p*2) : mix(Y,G,(p-.5)*2); }
+function iconFor(s){ var c={Paid:'#2e9e5b',Pending:'#e0a100',Cancelled:'#d33'}[s]; return '<span style="color:'+c+';font-size:15px">●</span> '+s; }
+
+var GR={
+ sales:{head:S_HEAD,rows:S,cap:'Sample sales data in A1:F11 (used by most examples)'},
+ wb:{head:['Product','Units','Revenue'],rows:[['Laptop',5,'$4,000'],['Mouse',40,'$600'],['Monitor',8,'$1,760']],tabs:['January Sales','February Sales','Summary'],act:0,cap:'Active sheet: <b>January Sales</b> in Sales_Report_2024.xlsx'},
+ csvx:{head:['Region','Product','Qty','Total'],rows:[['East','Laptop',5,4000],['West','Mouse',40,600],['North','Monitor',8,1760]]},
+ fmt:{rows:[
+   [{v:'Q1 Product Report',span:4,c:'hd ctr',s:'font-size:15px'}],
+   [{v:'Product',c:'sub'},{v:'Qty',c:'sub ctr'},{v:'Price',c:'sub ctr'},{v:'Status',c:'sub ctr'}],
+   ['Laptop',{v:5,s:'text-align:right'},{v:'$800.00',c:'r'},{v:'Paid',c:'ctr',s:'color:#1b7a3d;font-weight:700'}],
+   ['Mouse',40,{v:'$15.00',c:'r'},{v:'Paid',c:'ctr',s:'color:#1b7a3d;font-weight:700'}],
+   ['Monitor',8,{v:'$220.00',c:'r'},{v:'Pending',c:'ctr',s:'color:#b36b00;font-weight:700'}],
+   ['Keyboard',25,{v:'$45.00',c:'r'},{v:'Paid',c:'ctr',s:'color:#1b7a3d;font-weight:700'}]
+ ],rowCls:function(r,i){return i>=2&&i%2===1?'band':'';}},
+ f_in:{head:S_HEAD,rows:S,hi:[['D2:D11','in']]},
+ f_out:{c0:'H',r0:2,rows:[['East','Laptop',5,4000,'Paid','Jan'],['South','Laptop',3,2400,'Paid','Jan'],['West','Laptop',7,5600,'Pending','Feb'],['South','Monitor',12,2640,'Paid','Feb']],hi:[['H2:M5','out']]},
+ sort_out:{c0:'H',r0:2,rows:[['West','Laptop',7,5600],['East','Laptop',5,4000],['South','Monitor',12,2640],['South','Laptop',3,2400],['North','Monitor',8,1760]],hi:[['H2:K6','out']],cap:'…5 more rows spill below'},
+ u_out:{c0:'H',r0:2,rows:[['East'],['West'],['North'],['South']],hi:[['H2:H5','out']]},
+ sp:{head:['Item','Qty','Price'],rows:[['Pen',10,5],['Book',4,20],['Bag',2,45]],hi:[['B2:C4','in']]},
+ mail:{head:['Email','User name'],rows:[['rakesh.m@example.com',{v:'rakesh.m',c:'out'}],['anna.lee@mail.com',{v:'anna.lee',c:'out'}],['sam@corp.org',{v:'sam',c:'out'}]],hi:[['A2:A4','in']]},
+ ifand:{head:['Region','Product','Total','Status','Result'],rows:S.map(function(r){ var q=r[3]>2000&&r[4]==='Paid'; return [r[0],r[1],r[3],r[4],{v:q?'Qualified':'Not Qualified',c:q?'ok':'bad'}]; })},
+ sumifs:{head:S_HEAD,rows:S,rowCls:function(r,i){return 0;},hi:[['A2:A2','key'],['E2:E2','key'],['D2:D2','out'],['A6:A6','key'],['E6:E6','key'],['D6:D6','out']]},
+ look:{head:['Code','Product','Price'],rows:[['P01','Laptop',800],['P02','Mouse',15],['P03','Monitor',220],['P04','Keyboard',45]],hi:[['A4:C4','key']]},
+ matrix:{head:['Region','Jan','Feb','Mar'],rows:[['East',4000,1125,1320],['West',600,5600,1350],['North',1760,900,0],['South',2400,2640,0]],hi:[['A3','in'],['C1','in'],['C3','out']]},
+ cf:{head:['Region','Total > 2,000','Data Bar','Color Scale','Status Icon'],rows:S.map(function(r){ var t=r[3];
+   return [r[0],{v:t,c:t>2000?'ok':''},{v:t,s:'background:linear-gradient(90deg,#8ec5ee '+(t/5600*100).toFixed(0)+'%,transparent '+(t/5600*100).toFixed(0)+'%)'},{v:t,s:'background:'+scale(t)},{v:iconFor(r[4])}]; })},
+ rowhl:{head:S_HEAD,rows:S,rowCls:function(r){ return r[4]==='Pending'?'rowy':''; }},
+ sort2:{head:['Region','Product','Total'],rows:S.slice().sort(function(a,b){return a[0].localeCompare(b[0])||b[3]-a[3];}).map(function(r){return [r[0],r[1],r[3]];})},
+ filt:{filt:true,head:['Region','Product','Total','Status'],rows:[['West','Mouse',600,'Paid'],['West','Keyboard',1350,'Paid']],rn:[1,3,11],cap:'<b>2 of 10 records found</b> (status bar)'},
+ pivot:{r0:3,rows:[
+   [{v:'Sum of Total',c:'pvh'},{v:'Column Labels ▼',c:'pvh',span:4}],
+   [{v:'Row Labels ▼',c:'pvh'},{v:'Jan',c:'pvh ctr'},{v:'Feb',c:'pvh ctr'},{v:'Mar',c:'pvh ctr'},{v:'Grand Total',c:'pvh ctr'}],
+   ['East',4000,1125,1320,6445],['North',1760,900,'',2660],['South',2400,2640,'',5040],['West',600,5600,1350,7550],
+   [{v:'Grand Total',c:'tot'},{v:8760,c:'tot'},{v:10265,c:'tot'},{v:2670,c:'tot'},{v:21695,c:'tot'}]
+ ]},
+ c_east:{head:['Product','Units'],rows:[['Laptop',5],['Mouse',20],['Monitor',6]],tabs:['East','West','South','Summary'],act:0},
+ c_west:{head:['Product','Units'],rows:[['Laptop',7],['Mouse',40],['Monitor',4]],tabs:['East','West','South','Summary'],act:1},
+ c_south:{head:['Product','Units'],rows:[['Laptop',3],['Mouse',15],['Monitor',12]],tabs:['East','West','South','Summary'],act:2},
+ c_sum:{head:['Product','Units'],rows:[['Laptop',{v:15,c:'out'}],['Mouse',{v:75,c:'out'}],['Monitor',{v:22,c:'out'}]],tabs:['East','West','South','Summary'],act:3},
+ unp_b:{head:['Product','Jan','Feb','Mar'],rows:[['Apple',100,150,200],['Banana',80,90,120]],hi:[['B2:D3','in']],cap:'Before (wide)'},
+ unp_a:{head:['Product','Month','Sales'],rows:[['Apple','Jan',100],['Apple','Feb',150],['Apple','Mar',200],['Banana','Jan',80],['Banana','Feb',90],['Banana','Mar',120]],hi:[['A2:C7','out']],cap:'After Unpivot (long)'},
+ spl_b:{head:['Name'],rows:[['Smith, John'],['Lee, Anna']],hi:[['A2:A3','in']],cap:'Before'},
+ spl_a:{head:['Last Name','First Name'],rows:[['Smith','John'],['Lee','Anna']],hi:[['A2:B3','out']],cap:'After'}
+};
+document.querySelectorAll('.grid[data-g]').forEach(function(el){ var sp=GR[el.getAttribute('data-g')]; if(sp) renderGrid(el,sp); });
+
+/* ---------- copy / download ---------- */
+function copyText(t,done){
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,function(){}); }
+  else { var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); done();}catch(e){} document.body.removeChild(ta); }
+}
+document.querySelectorAll('.fx').forEach(function(el){
+  el.title='Click to copy formula';
+  el.addEventListener('click',function(){ var c=el.querySelector('code'); copyText(c.textContent,function(){ el.classList.add('copied'); setTimeout(function(){el.classList.remove('copied');},1400); }); });
+});
+function tsv(sep){ return [S_HEAD].concat(S).map(function(r){return r.join(sep);}).join('\n'); }
+var cb=document.getElementById('copyData');
+if(cb) cb.addEventListener('click',function(){ copyText(tsv('\t'),function(){ cb.textContent='✓ Copied. Paste into cell A1'; setTimeout(function(){cb.textContent='📋 Copy data (paste into Excel)';},2200); }); });
+var db=document.getElementById('dlData');
+if(db) db.addEventListener('click',function(){
+  var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([tsv(',')],{type:'text/csv'})); a.download='excel_notes_sample_sales.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+});
+
+/* ---------- sidebar nav + scrollspy ---------- */
+var nav=document.getElementById('nav'), links=[];
+document.querySelectorAll('section.card').forEach(function(sec){
+  var h=sec.querySelector('h2'); if(!h) return;
+  var num=h.querySelector('.num'); var label=h.textContent.replace(num?num.textContent:'','').trim();
+  var a=document.createElement('a'); a.href='#'+sec.id; a.textContent=(num?num.textContent+'  ':'')+label; nav.appendChild(a); links.push([a,sec]);
+  a.addEventListener('click',function(){ document.getElementById('side').classList.remove('open'); });
+});
+function spy(){ var y=window.scrollY+120, cur=links[0]; links.forEach(function(l){ if(l[1].offsetTop<=y) cur=l; }); links.forEach(function(l){ l[0].classList.toggle('on',l===cur); }); }
+window.addEventListener('scroll',spy,{passive:true}); spy();
+document.getElementById('menuBtn').addEventListener('click',function(){ document.getElementById('side').classList.toggle('open'); });
+})();
+</script>
+</body>
+</html>
